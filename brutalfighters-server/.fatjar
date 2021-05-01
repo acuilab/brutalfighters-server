@@ -1,0 +1,14 @@
+#Fat Jar Configuration File
+#Sat May 01 13:28:47 CST 2021
+onejar.license.required=true
+manifest.classpath=
+manifest.removesigners=true
+onejar.checkbox=false
+jarname=brutalfighters-server_fat.jar
+manifest.mergeall=true
+manifest.mainclass=com.brutalfighters.server.main.Main
+manifest.file=<createnew>
+jarname.isextern=false
+onejar.expand=
+excludes=
+includes=

@@ -1,5 +1,9 @@
 package com.brutalfighters.server.data.flags;
 
+/**
+ * 所有旗帜
+ *
+ */
 public class Flags {
 	private Flag[] flags;
 	

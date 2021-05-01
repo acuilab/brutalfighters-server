@@ -12,6 +12,10 @@ import com.brutalfighters.server.data.players.fighters.FighterFactory;
 import com.brutalfighters.server.data.projectiles.Projectiles;
 import com.esotericsoftware.kryonet.Connection;
 
+/**
+ * 游戏比赛管理器
+ *
+ */
 public class GameMatchManager {
 	private static GameMatches<ClosedGameMatch> closedMatches;
 	private static GameMatches<OpenGameMatch> openMatches;

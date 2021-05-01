@@ -8,6 +8,10 @@ import java.util.Set;
 import com.brutalfighters.server.data.players.fighters.Fighter;
 import com.esotericsoftware.kryonet.Connection;
 
+/**
+ * 封装了玩家的map，保存了所有玩家
+ *
+ */
 public class PlayerMap {
 	private HashMap<Connection, Fighter> players;
 	
@@ -43,6 +47,11 @@ public class PlayerMap {
 		return players;
 	}
 	
+	/**
+	 * 获得其他玩家数据
+	 * @param connection
+	 * @return
+	 */
 	public PlayerData[] getOtherPlayersData(Connection connection) {
 		Fighter[] players = getOtherPlayers(connection);
 		PlayerData[] pdatas = new PlayerData[players.length];
@@ -53,13 +62,28 @@ public class PlayerMap {
 		
 		return pdatas;
 	}
+	/**
+	 * 获得其他玩家
+	 * @param connection
+	 * @return
+	 */
 	public Fighter[] getOtherPlayers(Connection connection) {
 		Collection<Fighter> coll = getOtherCollection(connection);
 		return coll.toArray(new Fighter[coll.size()]);
 	}
+	/**
+	 * 获得其他玩家集合
+	 * @param connection
+	 * @return
+	 */
 	public Collection<Fighter> getOtherCollection(Connection connection) {
 		return getOtherMap(connection).values();
 	}
+	/**
+	 * 获得其他玩家map
+	 * @param connection
+	 * @return
+	 */
 	public HashMap<Connection, Fighter> getOtherMap(Connection connection) {
 		HashMap<Connection, Fighter> temp = new HashMap<Connection, Fighter>();
 		temp.putAll(players);

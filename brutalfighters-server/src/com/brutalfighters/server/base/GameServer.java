@@ -42,12 +42,19 @@ import com.brutalfighters.server.packets.Packet5EscapeMatch;
 import com.brutalfighters.server.util.Score;
 import com.brutalfighters.server.util.Vec2;
 
+/**
+ * 游戏服务器
+ * @author admin
+ *
+ */
 public class GameServer {
 	private static MPServer server;
 	private static Timer timer;
+	// 服务器50毫秒刷新一次，一秒钟刷新20次
 	private static final int DELAY = 50;
 
 	public static void Load() throws IOException {
+		// 实例化MPServer并注册数据包
 		server = new MPServer(new NetworkListener());
 		registerPackets();
 

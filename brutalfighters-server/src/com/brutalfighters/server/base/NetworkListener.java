@@ -27,6 +27,11 @@ import com.brutalfighters.server.packets.Packet5EscapeMatch;
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
 
+/**
+ * 网络监听器
+ * 服务器接收到的数据包统一在这里处理
+ *
+ */
 public class NetworkListener extends Listener {
 	@Override
 	public void received(Connection connection, Object object) {
@@ -137,8 +142,12 @@ public class NetworkListener extends Listener {
 
 	}
 
+	/**
+	 * 玩家断开连接
+	 */
 	@Override
 	public void disconnected(Connection connection) {
+		// 当玩家断开连接时，他不会被从比赛中移除，因为他可能会重新连接。 
 		GameMatchManager.disconnectPlayer(connection); // When a player is disconnected he won't be removed from the match, because he may reconnect.
 	}
 

@@ -25,36 +25,40 @@ import com.brutalfighters.server.util.MathUtil;
 import com.brutalfighters.server.util.Score;
 import com.esotericsoftware.kryonet.Connection;
 
+/**
+ * 游戏比赛抽象类
+ *
+ */
 abstract public class GameMatch {
 	
 	/*
 	 * 
-	 * Warmup: 20sec
-	 * Players: 6
-	 * Win State: 3 flags
-	 * Respawn: 6sec
-	 * Match Finish: 6sec
+	 * Warmup: 20sec		热身时间20秒
+	 * Players: 6			玩家数量6
+	 * Win State: 3 flags	获胜状态3个棋子
+	 * Respawn: 6sec		重生6秒
+	 * Match Finish: 6sec	比赛结束6秒
 	 * 
 	 */
 	
 	/* DON'T TOUCH IT */
-	protected static final int TEAM_LENGTH = 2;
-	protected static final int TEAM1 = 0;
-	protected static final int TEAM2 = 1;
+	protected static final int TEAM_LENGTH = 2;	// 队伍个数
+	protected static final int TEAM1 = 0;		// 第一队
+	protected static final int TEAM2 = 1;		// 第二队
 	
 	/* Configurable */
-	protected static final int DEFAULT_PLAYER_LIMIT = 6;
-	protected static final int WIN_STATE = 3;
+	protected static final int DEFAULT_PLAYER_LIMIT = 6;	// 默认玩家数
+	protected static final int WIN_STATE = 3;				// 获胜状态3个棋子
 
 	/* Configurable */
-	protected static final int DEFAULT_WARMUP = 20000;
-	protected static final int DEFAULT_RESPAWN = 6000;
-	protected static final int DEFAULT_FINISH = 6000;
+	protected static final int DEFAULT_WARMUP = 20000;		// 默认热身时间20秒
+	protected static final int DEFAULT_RESPAWN = 6000;		// 重生时间6秒
+	protected static final int DEFAULT_FINISH = 6000;		// 比赛结束时间6秒
 			
-	protected PlayerMap players;
-	protected PlayerMap[] teams;
+	protected PlayerMap players;	// 所有玩家
+	protected PlayerMap[] teams;	// 所有队伍
 	
-	protected Flags flags;
+	protected Flags flags;			// 旗
 	
 	protected Projectiles projectiles;
 	

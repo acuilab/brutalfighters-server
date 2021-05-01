@@ -1,8 +1,12 @@
 package com.brutalfighters.server.data.buffs;
 
+/**
+ * 增益数据（名称和时间属性）
+ *
+ */
 public class BuffData {
-	private String name;
-	private int time;
+	private String name;	// 名称
+	private int time;		// 时间
 	
 	public BuffData(String name, int time) {
 		setName(name);

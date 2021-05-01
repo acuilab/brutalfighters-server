@@ -2,6 +2,10 @@ package com.brutalfighters.server.data.flags;
 
 import com.brutalfighters.server.util.Vec2;
 
+/**
+ * 旗帜数据
+ *
+ */
 public class FlagData {
 	
 	private static final Vec2 SIZE = new Vec2(20,155);

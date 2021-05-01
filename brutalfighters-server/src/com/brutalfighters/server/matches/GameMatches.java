@@ -10,6 +10,11 @@ import com.brutalfighters.server.data.players.PlayerMap;
 import com.brutalfighters.server.data.players.fighters.Fighter;
 import com.esotericsoftware.kryonet.Connection;
 
+/**
+ * 
+ *
+ * @param <T>
+ */
 public class GameMatches<T extends GameMatch> {
 	private Class<T> gameMatch;
 	private HashMap <String, T> matches;

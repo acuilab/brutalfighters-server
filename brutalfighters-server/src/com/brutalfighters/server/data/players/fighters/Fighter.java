@@ -23,46 +23,59 @@ import com.brutalfighters.server.util.MathUtil;
 import com.brutalfighters.server.util.Vec2;
 import com.esotericsoftware.kryonet.Connection;
 
+/**
+ * 战士抽象类
+ *
+ */
 abstract public class Fighter {
 	
 	// Finals
 	protected static final int SKILLS = 4;
-	protected static final float AIR_FORCE = 1.4f;
-	protected static final int GRAVITY_FORCE = 27;
-	protected static final int FALLING_MOMENTUM = 9;
+	protected static final float AIR_FORCE = 1.4f;		// 空气阻力
+	protected static final int GRAVITY_FORCE = 27;		// 重力
+	protected static final int FALLING_MOMENTUM = 9;	// 下降动量 
 	
 	// Connection
+	// 连接
 	protected Connection connection;
 	
 	// Mana
+	// 法力值
 	protected int manaRegen;
 	
 	// Skills
-	protected final int[] max_skillCD;
-	protected int[] skillMana;
+	// 技能
+	protected final int[] max_skillCD;	// 最大技能cd
+	protected int[] skillMana;			// 技能消耗法力值
 	
 	// Match ID
+	// 比赛id
 	protected String m_id;
 	
 	// Connection
+	// 是否已连接
 	protected boolean isConnected;
 	
 	// AA
-	protected int AA_dmg;
-	protected Vec2 AA_range;
-	protected Vec2 AA_CD;
+	protected int AA_dmg;		// 自动攻击伤害
+	protected Vec2 AA_range;	// 自动攻击范围
+	protected Vec2 AA_CD;		// 自动攻击cd
 	
 	// Movement and Jumping speed
-	protected Vec2 walking_speed;
-	protected Vec2 running_speed;
-	protected Vec2 jump_height;
+	// 移动和跳跃速度
+	protected Vec2 walking_speed;	// 行走速度
+	protected Vec2 running_speed;	// 跑步速度
+	protected Vec2 jump_height;		// 跳跃高度
 	
 	// Max Size
+	// 最大尺寸
 	protected Vec2 max_size;
 	
+	// 增益列表
 	protected List<Buff> buffs;
 	
 	// The PlayerData
+	// 玩家数据
 	protected PlayerData player;
 	
 	// Jump
@@ -71,6 +84,26 @@ abstract public class Fighter {
 	// Bounds
 	protected Rectangle bounds;
 	
+	/**
+	 * 构造函数
+	 * @param connection
+	 * @param team
+	 * @param base
+	 * @param m_id
+	 * @param name
+	 * @param maxhp
+	 * @param maxmana
+	 * @param max_size
+	 * @param walking_speed
+	 * @param running_speed
+	 * @param jump_height
+	 * @param AA_CD
+	 * @param AA_range
+	 * @param AA_DMG
+	 * @param manaRegen
+	 * @param skillMana
+	 * @param max_skillCD
+	 */
 	protected Fighter(Connection connection, int team, Base base, String m_id, String name, int maxhp, int maxmana, Vec2 max_size, int walking_speed,
 				int running_speed, int jump_height, int AA_CD,
 				Vec2 AA_range, int AA_DMG, int manaRegen,

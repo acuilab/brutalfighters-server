@@ -7,6 +7,11 @@ import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryonet.Listener;
 import com.esotericsoftware.kryonet.Server;
 
+/**
+ * MPServer代表multiplayer server?
+ * MPServer是对kryonet和kryo的封装
+ *
+ */
 public class MPServer {
 	
 	private Server server;

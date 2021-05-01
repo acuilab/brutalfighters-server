@@ -11,7 +11,10 @@ import com.brutalfighters.server.util.CollisionDetection;
 import com.brutalfighters.server.util.Vec2;
 import com.esotericsoftware.kryonet.Connection;
 
-
+/**
+ * 旗帜
+ *
+ */
 public class Flag {
 	
 	private FlagData flag;
