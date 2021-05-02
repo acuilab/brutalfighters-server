@@ -16,15 +16,56 @@ import com.brutalfighters.server.util.MathUtil;
 import com.brutalfighters.server.util.Vec2;
 import com.esotericsoftware.kryonet.Connection;
 
+/**
+ * 战士Blaze
+ *
+ */
 public class Blaze extends Fighter {
 	
 	public Blaze(Connection connection, int team, Base base, String m_id) {
-		super(connection, team, base, m_id, "Blaze", 1000, 1000, new Vec2(90,100), 10, //$NON-NLS-1$
-				18, 52, 500, new Vec2(200,50), 75, 9,
-				new int[] {400,200,950,500}, new int[] {980,580,820,820});
+		/**
+		 * 构造函数
+		 * @param connection		// 连接
+		 * @param team				// 队伍
+		 * @param base				// 位置和朝向
+		 * @param m_id				// 比赛id
+		 * @param name				// 名称
+		 * @param maxhp				// 最大hp
+		 * @param maxmana			// 最大魔法值
+		 * @param max_size			// 最大尺寸
+		 * @param walking_speed		// 行走速度
+		 * @param running_speed		// 跑步速度
+		 * @param jump_height		// 跳跃高度
+		 * @param AA_CD				// 自动攻击cd
+		 * @param AA_range			// 自动攻击范围
+		 * @param AA_DMG			// 自动攻击伤害
+		 * @param manaRegen			// 法力回复
+		 * @param skillMana			// 技能消耗法力值
+		 * @param max_skillCD		// 最大技能cd
+		 */
+		super(connection, 
+				team, 		// 队伍
+				base, 		// 位置和朝向
+				m_id, 		// 比赛id
+				"Blaze", 	// 名称
+				1000, 		// 最大hp
+				1000, 		// 最大mp
+				new Vec2(90,100), // 最大尺寸
+				10,		// 行走速度
+				18, 	// 跑步速度
+				52, 	// 跳跃高度
+				500, 	// 自动攻击cd
+				new Vec2(200,50), 	// 自动攻击范围
+				75, 	// 自动攻击伤害
+				9,		// 法力回复
+				new int[] {400,200,950,500}, 	// 技能消耗法力值
+				new int[] {980,580,820,820}		// 技能cd最大值
+		);
 	}
 	
-	// SKILL 1
+	// SKILLS（每人4个技能）
+	
+	// ##### SKILL 1 #####
 	int s1_HEIGHT = 40, s1_WIDTH = 500, dmg = 40; // DEALS AROUND 4 times
 	
 	@Override
@@ -49,6 +90,7 @@ public class Blaze extends Fighter {
 		getPlayer().disableSkilling();
 	}
 	
+	// ##### SKILL 2 #####
 	@Override
 	public void skill2() {
 		updateSkill2();
@@ -72,7 +114,7 @@ public class Blaze extends Fighter {
 		getPlayer().disableSkilling();
 	}
 	
-	// Skill 3
+	// ##### Skill 3 #####
 	private final int self_hp = 550;
 	
 	@Override
@@ -100,7 +142,7 @@ public class Blaze extends Fighter {
 	}
 	
 	
-	// SKILL 4
+	// ##### SKILL 4 #####
 	@Override
 	public void startSkill4() {
 		if(applySkillMana(3)) {

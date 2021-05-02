@@ -4,12 +4,16 @@ import java.util.Iterator;
 
 import com.brutalfighters.server.data.players.fighters.Fighter;
 
+/**
+ * 红蝙蝠增益
+ *
+ */
 public class Buff_RedBats extends Buff {
 	
 	private final int dmg = 50;
 	
 	public Buff_RedBats(int MAX_TIME) {
-		super("RedBats", MAX_TIME); //$NON-NLS-1$
+		super("RedBats", MAX_TIME);
 	}
 	public Buff_RedBats() {
 		this(3000);

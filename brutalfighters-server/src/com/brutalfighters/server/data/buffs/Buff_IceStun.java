@@ -5,6 +5,10 @@ import java.util.Iterator;
 import com.brutalfighters.server.data.players.PlayerData;
 import com.brutalfighters.server.data.players.fighters.Fighter;
 
+/**
+ * 冰眩增益
+ *
+ */
 public class Buff_IceStun extends Buff {
 
 	public Buff_IceStun(int MAX_TIME) {

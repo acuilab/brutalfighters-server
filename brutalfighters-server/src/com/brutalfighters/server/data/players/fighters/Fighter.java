@@ -30,7 +30,7 @@ import com.esotericsoftware.kryonet.Connection;
 abstract public class Fighter {
 	
 	// Finals
-	protected static final int SKILLS = 4;
+	protected static final int SKILLS = 4;				// 技能数量？？
 	protected static final float AIR_FORCE = 1.4f;		// 空气阻力
 	protected static final int GRAVITY_FORCE = 27;		// 重力
 	protected static final int FALLING_MOMENTUM = 9;	// 下降动量 
@@ -40,7 +40,7 @@ abstract public class Fighter {
 	protected Connection connection;
 	
 	// Mana
-	// 法力值
+	// 法力回复
 	protected int manaRegen;
 	
 	// Skills
@@ -86,28 +86,41 @@ abstract public class Fighter {
 	
 	/**
 	 * 构造函数
-	 * @param connection
-	 * @param team
-	 * @param base
-	 * @param m_id
-	 * @param name
-	 * @param maxhp
-	 * @param maxmana
-	 * @param max_size
-	 * @param walking_speed
-	 * @param running_speed
-	 * @param jump_height
-	 * @param AA_CD
-	 * @param AA_range
-	 * @param AA_DMG
-	 * @param manaRegen
-	 * @param skillMana
-	 * @param max_skillCD
+	 * @param connection		// 连接
+	 * @param team				// 队伍
+	 * @param base				// 位置和朝向
+	 * @param m_id				// 比赛id
+	 * @param name				// 名称
+	 * @param maxhp				// 最大hp
+	 * @param maxmana			// 最大魔法值
+	 * @param max_size			// 最大尺寸
+	 * @param walking_speed		// 行走速度
+	 * @param running_speed		// 跑步速度
+	 * @param jump_height		// 跳跃高度
+	 * @param AA_CD				// 自动攻击cd
+	 * @param AA_range			// 自动攻击范围
+	 * @param AA_DMG			// 自动攻击伤害
+	 * @param manaRegen			// 法力回复
+	 * @param skillMana			// 技能消耗法力值
+	 * @param max_skillCD		// 技能cd最大值
 	 */
-	protected Fighter(Connection connection, int team, Base base, String m_id, String name, int maxhp, int maxmana, Vec2 max_size, int walking_speed,
-				int running_speed, int jump_height, int AA_CD,
-				Vec2 AA_range, int AA_DMG, int manaRegen,
-				int[] skillMana, int[] max_skillCD) {
+	protected Fighter(Connection connection, 
+			int team, 
+			Base base, 
+			String m_id, 
+			String name, 
+			int maxhp, 
+			int maxmana,
+			Vec2 max_size, 
+			int walking_speed, 
+			int running_speed, 
+			int jump_height, 
+			int AA_CD, 
+			Vec2 AA_range, 
+			int AA_DMG,
+			int manaRegen, 
+			int[] skillMana, 
+			int[] max_skillCD) {
 		
 		// Setting connection
 		setConnection(connection);
@@ -119,6 +132,7 @@ abstract public class Fighter {
 		this.max_skillCD = max_skillCD.clone();
 		
 		// Constructing a new fighter/player data
+		// 构造一个新的战士/玩家数据
 		setPlayer(new PlayerData(team, base.getPos(), base.getFlip(), name, maxhp, maxmana, getMaxSize(), getMaxSkillCD(), GameMatch.getDefaultRespawn()));
 
 		// Mana
@@ -154,9 +168,17 @@ abstract public class Fighter {
 
 	}
 	
+	/**
+	 * 获得连接
+	 * @return
+	 */
 	public Connection getConnection() {
 		return connection;
 	}
+	/**
+	 * 设置连接
+	 * @param connection
+	 */
 	public void setConnection(Connection connection) {
 		this.connection = connection;
 	}
@@ -164,36 +186,75 @@ abstract public class Fighter {
 	public static int getSkills() {
 		return SKILLS;
 	}
+	/**
+	 * 获得空气阻力
+	 * @return
+	 */
 	public static float getAirForce() {
 		return AIR_FORCE;
 	}
+	/**
+	 * 获得重力
+	 * @return
+	 */
 	public static int getGravityForce() {
 		return GRAVITY_FORCE;
 	}
+	/**
+	 * 获得下降动量
+	 * @return
+	 */
 	public static int getFallingMomentum() {
 		return FALLING_MOMENTUM;
 	}
 	
+	/**
+	 * 获得最大尺寸
+	 * @return
+	 */
 	public Vec2 getMaxSize() {
 		return max_size;
 	}
+	/**
+	 * 设置最大尺寸
+	 * @param max_size
+	 */
 	public void setMaxSize(Vec2 max_size) {
 		this.max_size = new Vec2(max_size);
 	}
 	
+	/**
+	 * 获得增益列表
+	 * @return
+	 */
 	public List<Buff> getBuffs() {
 		return buffs;
 	}
+	/**
+	 * 设置增益列表
+	 * @param buffs
+	 */
 	public void setBuffs(List<Buff> buffs) {
 		this.buffs = buffs;
 	}
+	/**
+	 * 重置增益列表
+	 */
 	public void resetBuffs() {
 		this.buffs = new ArrayList<Buff>();
 	}
 
+	/**
+	 * 获得法力回复
+	 * @return
+	 */
 	public int getManaRegen() {
 		return manaRegen;
 	}
+	/**
+	 * 设置法力回复
+	 * @param manaRegen
+	 */
 	public void setManaRegen(int manaRegen) {
 		this.manaRegen = manaRegen;
 	}
@@ -292,8 +353,11 @@ abstract public class Fighter {
 		this.player = pdata;
 	}
 	
+	/**
+	 * 更新
+	 */
 	public final void update() {
-		
+		// 允许extra polation
 		resetExtrapolation();
 		
 		if(!applyDeath()) {
@@ -484,6 +548,10 @@ abstract public class Fighter {
 		setPlayer(new PlayerData(getPlayer().getTeam(), GameMatchManager.getCurrentMap().getBase(getPlayer().getTeam()).getPos(), GameMatchManager.getCurrentMap().getBase(getPlayer().getTeam()).getFlip(), getPlayer().getName(), getPlayer().getHP().getY(), getPlayer().getMana().getY(), getMaxSize(), getMaxSkillCD(), GameMatch.getDefaultRespawn()));
 	}
 
+	/**
+	 * 应用死亡逻辑
+	 * @return
+	 */
 	protected final boolean applyDeath() {
 		if(!getPlayer().isDead()) {
 			if(getPlayer().hasNoHP()) {
@@ -502,6 +570,9 @@ abstract public class Fighter {
 		
 	}
 	
+	/**
+	 * 应用跳跃逻辑
+	 */
 	public final void applyJump() {
 		if(!getPlayer().isMidAir() && getPlayer().onGround()) {
 			if(getPlayer().isJump()) {
@@ -524,6 +595,10 @@ abstract public class Fighter {
 		}
 	}
 
+	/**
+	 * 应用重力逻辑
+	 * @return
+	 */
 	public final boolean applyGravity() {
 		if(getPlayer().isMidAir()) {
 			applyGravitation();
@@ -543,6 +618,7 @@ abstract public class Fighter {
 	}
 	
 	/* We can use Enum of sides(bot,left,right,top) and pass it as a parameter, thus combine those 4 functions into one. */
+	/* 我们可以使用边数（bot，left，right，top）的Enum并将其作为参数传递，从而将这4个函数组合为一个。 */
 	protected final boolean collidesBot() {
 		// BOT!
 		return GameMatchManager.getCurrentMap().intersectsSurroundXBoth("top", getPlayer().getPos().getX(), getPlayer().getPos().getY()+getBot()+getPlayer().getVel().getY(), getVelocityBounds(false, true)) || getPlayer().getPos().getY() + getPlayer().getVel().getY() + getBot() < GameMatchManager.getCurrentMap().getBotBoundary(); //$NON-NLS-1$

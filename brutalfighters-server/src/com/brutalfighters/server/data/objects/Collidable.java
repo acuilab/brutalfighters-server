@@ -2,6 +2,10 @@ package com.brutalfighters.server.data.objects;
 
 import java.awt.Rectangle;
 
+/**
+ * 可碰撞的（包含了一个矩形的包围框）
+ *
+ */
 public class Collidable {
 	protected Rectangle bounds;
 	
@@ -23,6 +27,11 @@ public class Collidable {
 		setBounds(new Rectangle(x, y, width, height));
 	}
 	
+	/**
+	 * 检查是否与某个矩形相交
+	 * @param bounds
+	 * @return
+	 */
 	public boolean intersects(Rectangle bounds) {
 		return getBounds().intersects(bounds);
 	}

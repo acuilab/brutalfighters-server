@@ -11,14 +11,14 @@ import com.brutalfighters.server.data.players.fighters.Fighter;
 import com.esotericsoftware.kryonet.Connection;
 
 /**
- * 
+ * 所有游戏比赛
  *
  * @param <T>
  */
 public class GameMatches<T extends GameMatch> {
 	private Class<T> gameMatch;
 	private HashMap <String, T> matches;
-	private HashMap <Connection, String> players;
+	private HashMap <Connection, String> players;	// 保存所有玩家（连接，ID)
 	
 	public GameMatches(Class<T> gameMatch) {
 		this.gameMatch = gameMatch;
@@ -44,6 +44,11 @@ public class GameMatches<T extends GameMatch> {
 		return getMatch(players.get(cnct));
 	}
 	
+	/**
+	 * 增加比赛（它将玩家和比赛添加到HashMaps中。）
+	 * @param ID
+	 * @param match
+	 */
 	public void addMatch(String ID, T match) { // It adds the players and the match into the HashMaps.
 		for(Entry<Connection, Fighter> entry : match.getPlayers().entrySet()) {
 		    players.put(entry.getKey(), ID);

@@ -3,13 +3,17 @@ package com.brutalfighters.server.tiled;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * 瓦片属性集(瓦片属性的集合)
+ *
+ */
 public class Tileset {
 	
-	private static final String BLOCKED = "blocked"; //$NON-NLS-1$
-	private static final String BLOCKED_TOP = "top"; //$NON-NLS-1$	
-	private static final String STEP = "step"; //$NON-NLS-1$
-	private static final String TELEPORT = "teleport"; //$NON-NLS-1$
-	private static final String RATIO = "ratio"; //$NON-NLS-1$
+	private static final String BLOCKED = "blocked";
+	private static final String BLOCKED_TOP = "top";
+	private static final String STEP = "step";
+	private static final String TELEPORT = "teleport";
+	private static final String RATIO = "ratio";
 	
 	private Map<String, Object> properties;
 	

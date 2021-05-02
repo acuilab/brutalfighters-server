@@ -13,14 +13,56 @@ import com.brutalfighters.server.util.MathUtil;
 import com.brutalfighters.server.util.Vec2;
 import com.esotericsoftware.kryonet.Connection;
 
+/**
+ * 战士Dusk
+ *
+ */
 public class Dusk extends Fighter {
 	
 	public Dusk(Connection connection, int team, Base base, String m_id) {
-		super(connection, team, base, m_id, "Dusk", 900, 1000, new Vec2(90,100), 10, //$NON-NLS-1$
-				21, 52, 500, new Vec2(200,50), 68, 9,
-				new int[] {300,300,300,500}, new int[] {740,820,580,500});
+		/**
+		 * 构造函数
+		 * @param connection		// 连接
+		 * @param team				// 队伍
+		 * @param base				// 位置和朝向
+		 * @param m_id				// 比赛id
+		 * @param name				// 名称
+		 * @param maxhp				// 最大hp
+		 * @param maxmana			// 最大魔法值
+		 * @param max_size			// 最大尺寸
+		 * @param walking_speed		// 行走速度
+		 * @param running_speed		// 跑步速度
+		 * @param jump_height		// 跳跃高度
+		 * @param AA_CD				// 自动攻击cd
+		 * @param AA_range			// 自动攻击范围
+		 * @param AA_DMG			// 自动攻击伤害
+		 * @param manaRegen			// 法力回复
+		 * @param skillMana			// 技能消耗法力值
+		 * @param max_skillCD		// 最大技能cd
+		 */
+		super(connection, 
+				team, 		// 队伍
+				base, 		// 位置和朝向
+				m_id, 		// 比赛id
+				"Dusk", 	// 名称
+				900, 		// 最大hp
+				1000, 		// 最大mp
+				new Vec2(90,100), // 最大尺寸
+				10,		// 行走速度
+				21, 	// 跑步速度
+				52, 	// 跳跃高度
+				500, 	// 自动攻击cd
+				new Vec2(200,50), 	// 自动攻击范围
+				68, 	// 自动攻击伤害
+				9,		// 法力回复
+				new int[] {300,300,300,500}, 	// 技能消耗法力值
+				new int[] {740,820,580,500}		// 技能cd最大值
+		);
 	}
 	
+	// SKILLS（每人4个技能）
+	
+	// ##### Skill 1 #####
 	@Override
 	public void updateSkill1() {
 		defaultUpdate();
@@ -50,7 +92,7 @@ public class Dusk extends Fighter {
 		getPlayer().disableSkilling();
 	}
 
-	// Skill 2
+	// ##### Skill 2 #####
 	@Override
 	public void startSkill2() {
 		if(applySkillMana(1)) {
@@ -91,6 +133,7 @@ public class Dusk extends Fighter {
 		resetSpeeds();
 	}
 	
+	// ##### Skill 3 #####
 	@Override
 	public void skill3() {
 		updateSkill3();
@@ -114,7 +157,7 @@ public class Dusk extends Fighter {
 		getPlayer().disableSkilling();
 	}
 	
-	
+	// ##### Skill 4 #####
 	@Override
 	public void skill4() {
 		updateSkill4();

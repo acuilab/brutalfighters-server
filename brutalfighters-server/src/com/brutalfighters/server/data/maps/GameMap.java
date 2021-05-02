@@ -7,14 +7,16 @@ import com.brutalfighters.server.tiled.TiledMap;
 import com.brutalfighters.server.tiled.Tileset;
 import com.brutalfighters.server.util.Vec2;
 
+/**
+ * 游戏地图
+ *
+ */
 public class GameMap extends TiledMap {
 
+	// 上下左右边框
 	protected int leftBoundary;
-
 	protected int rightBoundary;
-
 	protected int topBoundary;
-
 	protected int botBoundary;
 	
 	public GameMap(TiledMap map) {

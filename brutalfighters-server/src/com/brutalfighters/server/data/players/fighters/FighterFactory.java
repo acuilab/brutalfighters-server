@@ -3,7 +3,10 @@ package com.brutalfighters.server.data.players.fighters;
 import com.brutalfighters.server.data.maps.Base;
 import com.esotericsoftware.kryonet.Connection;
 
-
+/**
+ * 战士工厂
+ *
+ */
 public enum FighterFactory {
 	Blaze {
 		@Override

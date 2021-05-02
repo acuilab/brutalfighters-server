@@ -17,11 +17,11 @@ import com.esotericsoftware.kryonet.Connection;
  *
  */
 public class GameMatchManager {
-	private static GameMatches<ClosedGameMatch> closedMatches;
-	private static GameMatches<OpenGameMatch> openMatches;
-	private static GameMatches<FreestyleGameMatch> freestyleMatches;
-	private static GameMatch currentMatch;
-	private static SecureRandom matchID;
+	private static GameMatches<ClosedGameMatch> closedMatches;			// 打开的比赛
+	private static GameMatches<OpenGameMatch> openMatches;				// 关闭的比赛
+	private static GameMatches<FreestyleGameMatch> freestyleMatches;	// 自由赛
+	private static GameMatch currentMatch;	// 当前比赛
+	private static SecureRandom matchID;	// 比赛id
 	
 	public static void gameMatchManager() {
 		closedMatches = new GameMatches<ClosedGameMatch>(ClosedGameMatch.class);
@@ -83,6 +83,7 @@ public class GameMatchManager {
 	}
 	
 	// Connect and Disconnect Players to Matches
+	// 将玩家连接和断开以进行比赛
 	public static void connectPlayer(GameMode gamemode, String fighter, Connection cnct) {
 		System.out.println("Got a new player: " + cnct.getID() + " | Playing:" + fighter + " | In Game Mode:" + gamemode.name()); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 		if(FighterFactory.contains(Character.toUpperCase(fighter.charAt(0)) + fighter.substring(1))) {
@@ -130,9 +131,17 @@ public class GameMatchManager {
 	}
 	
 	// Current Match
+	/**
+	 * 设置当前比赛
+	 * @param match
+	 */
 	private static void setCurrentMatch(GameMatch match) {
 		currentMatch = match;
 	}
+	/**
+	 * 获得当前比赛
+	 * @return
+	 */
 	public static GameMatch getCurrentMatch() {
 		return currentMatch;
 	}
@@ -142,6 +151,10 @@ public class GameMatchManager {
 	public static Fighter getCurrentPlayer(Connection cnct) {
 		return getCurrentMatch().getPlayer(cnct);
 	}
+	/**
+	 * 获得当前地图
+	 * @return
+	 */
 	public static CTFMap getCurrentMap() {
 		return getCurrentMatch().getMap();
 	}
@@ -150,12 +163,17 @@ public class GameMatchManager {
 	}
 	
 	// Secure Match ID
+	/**
+	 * 获得下一个安全比赛id
+	 * @return
+	 */
 	public static String nextSecureKeyID() {
 		return new BigInteger(130, matchID).toString(32);
 	}
 	public static String uniqueSecureKeyID() {
 		String ID = GameMatchManager.nextSecureKeyID();
-		System.out.println("Got key? " + ID); //$NON-NLS-1$
+		System.out.println("Got key? " + ID);
+		// 循环直至找到一个未被使用的ID
 		while(closedMatches.isKey(ID) || openMatches.isKey(ID) || freestyleMatches.isKey(ID)) {
 			ID = GameMatchManager.nextSecureKeyID();
 		}

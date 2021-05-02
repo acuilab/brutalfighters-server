@@ -2,9 +2,10 @@ package com.brutalfighters.server.tiled;
 
 import com.brutalfighters.server.data.objects.Collidable;
 
-
-
-
+/**
+ * 一个可碰撞的瓦片
+ *
+ */
 public class Tile extends Collidable {
 	private int id;
 	private String blocked;

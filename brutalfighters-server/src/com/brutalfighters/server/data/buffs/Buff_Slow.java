@@ -4,12 +4,16 @@ import java.util.Iterator;
 
 import com.brutalfighters.server.data.players.fighters.Fighter;
 
+/**
+ * 减速增益
+ *
+ */
 public class Buff_Slow extends Buff {
 
 	private final int slowness_divide;
 	
 	public Buff_Slow(int MAX_TIME, int slowness_divide) {
-		super("Slow", MAX_TIME); //$NON-NLS-1$
+		super("Slow", MAX_TIME);
 		this.slowness_divide = slowness_divide;
 	}
 	public Buff_Slow(int slowness_divide) {

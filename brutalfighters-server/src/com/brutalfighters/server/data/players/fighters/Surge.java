@@ -13,17 +13,56 @@ import com.brutalfighters.server.util.CollisionDetection;
 import com.brutalfighters.server.util.Vec2;
 import com.esotericsoftware.kryonet.Connection;
 
+/**
+ * 战士Surge
+ *
+ */
 public class Surge extends Fighter {
 
 	public Surge(Connection connection, int team, Base base, String m_id) {
-		super(connection, team, base, m_id, "Surge", 1000, 1000, new Vec2(90,100), 8, //$NON-NLS-1$
-				16, 52, 500, new Vec2(200,50), 68, 9,
-				new int[] {250,400,200,650}, new int[] {500,900,1200,1300});
+		/**
+		 * 构造函数
+		 * @param connection		// 连接
+		 * @param team				// 队伍
+		 * @param base				// 位置和朝向
+		 * @param m_id				// 比赛id
+		 * @param name				// 名称
+		 * @param maxhp				// 最大hp
+		 * @param maxmana			// 最大mp
+		 * @param max_size			// 最大尺寸
+		 * @param walking_speed		// 行走速度
+		 * @param running_speed		// 跑步速度
+		 * @param jump_height		// 跳跃高度
+		 * @param AA_CD				// 自动攻击cd
+		 * @param AA_range			// 自动攻击范围
+		 * @param AA_DMG			// 自动攻击伤害
+		 * @param manaRegen			// 法力回复
+		 * @param skillMana			// 技能消耗法力值
+		 * @param max_skillCD		// 最大技能cd
+		 */
+		super(connection, 
+				team, 		// 队伍
+				base, 		// 位置和朝向
+				m_id,		// 比赛id
+				"Surge",	// 名称
+				1000, 		// 最大hp
+				1000, 		// 最大mp
+				new Vec2(90,100), // 最大尺寸
+				8, 		// 行走速度
+				16, 	// 跑步速度
+				52, 	// 跳跃高度
+				500, 	// 自动攻击cd
+				new Vec2(200,50), 	// 自动攻击范围
+				68, 	// 自动攻击伤害
+				9,		// 法力回复
+				new int[] {250,400,200,650}, 	// 技能消耗法力值
+				new int[] {500,900,1200,1300}	// 技能cd最大值
+		);
 	}
 	
-	// SKILLS
+	// SKILLS（每人4个技能）
 	
-	// Skill 1
+	// ##### Skill 1 #####
 	final int DMG = 20;
 	
 	@Override
@@ -59,7 +98,7 @@ public class Surge extends Fighter {
 		getPlayer().disableSkilling();
 	}
 
-	// Skill 2
+	// ##### Skill 2 #####
 	
 	@Override
 	public void updateSkill2() {
@@ -89,7 +128,7 @@ public class Surge extends Fighter {
 		getPlayer().disableSkilling();
 	}
 	
-	// Skill 3
+	// ##### Skill 3 #####
 	
 	@Override
 	public void updateSkill3() {
@@ -119,7 +158,7 @@ public class Surge extends Fighter {
 		getPlayer().setVulnerable(true);
 	}
 	
-	// Skill 4
+	// ##### Skill 4 #####
 	
 	final int S4_dmg = 300, S4_X_RANGE = 150, S4_Y_RANGE = 350, DISTANCE = 230;
 	

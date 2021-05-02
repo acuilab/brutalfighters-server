@@ -12,17 +12,56 @@ import com.brutalfighters.server.util.CollisionDetection;
 import com.brutalfighters.server.util.Vec2;
 import com.esotericsoftware.kryonet.Connection;
 
+/**
+ * 战士Lust
+ *
+ */
 public class Lust extends Fighter {
-
+	
 	public Lust(Connection connection, int team, Base base, String m_id) {
-		super(connection, team, base, m_id, "Lust", 800, 1000, new Vec2(90,100), //$NON-NLS-1$
-				14, 26, 52, 500, new Vec2(200,50), 75, 9,
-				new int[] {250,200,400,300}, new int[] {600,380,0,450});
+		/**
+		 * 构造函数
+		 * @param connection		// 连接
+		 * @param team				// 队伍
+		 * @param base				// 位置和朝向
+		 * @param m_id				// 比赛id
+		 * @param name				// 名称
+		 * @param maxhp				// 最大hp
+		 * @param maxmana			// 最大mp
+		 * @param max_size			// 最大尺寸
+		 * @param walking_speed		// 行走速度
+		 * @param running_speed		// 跑步速度
+		 * @param jump_height		// 跳跃高度
+		 * @param AA_CD				// 自动攻击cd
+		 * @param AA_range			// 自动攻击范围
+		 * @param AA_DMG			// 自动攻击伤害
+		 * @param manaRegen			// 法力回复
+		 * @param skillMana			// 技能消耗法力值
+		 * @param max_skillCD		// 技能cd最大值
+		 */
+		super(connection, 
+				team, 		// 队伍
+				base, 		// 位置和朝向
+				m_id, 		// 比赛id
+				"Lust", 	// 名称
+				800, 		// 最大hp
+				1000, 		// 最大mp
+				new Vec2(90,100), // 最大尺寸
+				14, 	// 行走速度
+				26, 	// 跑步速度
+				52, 	// 跳跃高度
+				500, 	// 自动攻击cd
+				new Vec2(200,50), 	// 自动攻击范围
+				75, 	// 自动攻击伤害
+				9,		// 法力回复
+				new int[] {250,200,400,300}, 	// 技能消耗法力值
+				new int[] {600,380,0,450}		// 技能cd最大值
+		);
 	}
 	
-	// SKILLS
+	// SKILLS（每人4个技能）
 
-	// Skill 1
+	// ##### Skill 1 #####
 	
 	// Variables
 	public final float S1_DMG = 200, S1_HEIGHT = getPlayer().getSize().getY()*2, S1_WIDTH = 100, S1_JUMP_HEIGHT = 55;
@@ -69,7 +108,7 @@ public class Lust extends Fighter {
 	
 	
 	
-	// Skill 2
+	// ##### Skill 2 #####
 	@Override
 	public void startSkill2() {
 		if(applySkillMana(1)) {
@@ -112,7 +151,7 @@ public class Lust extends Fighter {
 	
 	
 	
-	// Skill 3
+	// ##### Skill 3 #####
 	
 	public final int S3_HP = 200;
 	
@@ -136,7 +175,7 @@ public class Lust extends Fighter {
 	
 	
 	
-	// Skill 4
+	// ##### Skill 4 #####
 	
 	@Override
 	public void startSkill4() {

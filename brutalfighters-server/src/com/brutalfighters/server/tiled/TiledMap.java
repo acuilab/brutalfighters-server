@@ -5,7 +5,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+/**
+ * 瓦片地图
+ *
+ */
 public class TiledMap {
+	// 地图宽度，地图高度，瓦片宽度，瓦片高度，瓦片属性集集合和瓦片层集合
 	protected int width, height, tileWidth, tileHeight;
 	protected HashMap<Integer,Tileset> tilesets = new HashMap<Integer,Tileset>();
 	protected List<TiledLayer> tiledlayers = new ArrayList<TiledLayer>();
@@ -17,7 +22,7 @@ public class TiledMap {
 		this.tileHeight = tileHeight;
 	}
 	
-	//   TILESETS
+	//   ##### TILESETS #####
 	
 	// Add Tileset
 	@SuppressWarnings("boxing")
@@ -25,13 +30,21 @@ public class TiledMap {
 		tilesets.put(id, new Tileset());
 	}
 	
-	// Edit Tileset
+	/**
+	 * Edit Tileset
+	 * @param id
+	 * @param key
+	 * @param value
+	 */
 	@SuppressWarnings("boxing")
 	public void editTileset(int id, String key, Object value) {
 		tilesets.get(id).setProperty(key, value);
 	}
 	
-	// Get Tileset
+	/**
+	 * Get Tileset
+	 * @return
+	 */
 	public HashMap<Integer,Tileset> getTilesets() {
 		return tilesets;
 	}
@@ -54,7 +67,7 @@ public class TiledMap {
 	}
 	
 	
-	// TILED LAYERS
+	// ##### TILED LAYERS #####
 	
 	// Add Tiledlayer
 	public void addTiledLayer() {
@@ -79,7 +92,7 @@ public class TiledMap {
 	
 	
 	
-	// Tiles
+	// ##### Tiles #####
 	
 	// Add Tiles
 	public void addTile(int i, int id) {
@@ -118,7 +131,7 @@ public class TiledMap {
 		return tileHeight;
 	}
 	
-	// Collision Detection
+	// ##### Collision Detection #####
 	public Rectangle getBounds(int layer, int x, int y) {
 		return getTile(layer,x,y).getBounds();
 	}

@@ -11,17 +11,56 @@ import com.brutalfighters.server.matches.GameMatchManager;
 import com.brutalfighters.server.util.Vec2;
 import com.esotericsoftware.kryonet.Connection;
 
+/**
+ * 战士Chip
+ *
+ */
 public class Chip extends Fighter {
 	
 	public Chip(Connection connection, int team, Base base, String m_id) {
-		super(connection, team, base, m_id, "Chip", 600, 1000, new Vec2(90,100), 12, //$NON-NLS-1$
-				21, 52, 500, new Vec2(200,50), 68, 9,
-				new int[] {300,200,300,600}, new int[] {900,820,560,440});
+		/**
+		 * 构造函数
+		 * @param connection		// 连接
+		 * @param team				// 队伍
+		 * @param base				// 位置和朝向
+		 * @param m_id				// 比赛id
+		 * @param name				// 名称
+		 * @param maxhp				// 最大hp
+		 * @param maxmana			// 最大魔法值
+		 * @param max_size			// 最大尺寸
+		 * @param walking_speed		// 行走速度
+		 * @param running_speed		// 跑步速度
+		 * @param jump_height		// 跳跃高度
+		 * @param AA_CD				// 自动攻击cd
+		 * @param AA_range			// 自动攻击范围
+		 * @param AA_DMG			// 自动攻击伤害
+		 * @param manaRegen			// 法力回复
+		 * @param skillMana			// 技能消耗法力值
+		 * @param max_skillCD		// 最大技能cd
+		 */
+		super(connection, 
+				team, 		// 队伍
+				base, 		// 位置和朝向
+				m_id, 		// 比赛id
+				"Chip", 	// 名称
+				600, 		// 最大hp
+				1000, 		// 最大mp
+				new Vec2(90,100), // 最大尺寸
+				12,		// 行走速度
+				21, 	// 跑步速度
+				52, 	// 跳跃高度
+				500, 	// 自动攻击cd
+				new Vec2(200,50), 	// 自动攻击范围
+				68, 	// 自动攻击伤害
+				9,		// 法力回复
+				new int[] {300,200,300,600}, 	// 技能消耗法力值
+				new int[] {900,820,560,440}		// 技能cd最大值
+		);
 	}
 	
-	// SKILLS
+	// SKILLS（每人4个技能）
 	
-	// Skill 1
+	// ##### Skill 1 #####
 	
 	@Override
 	public void updateSkill1() {
@@ -53,7 +92,7 @@ public class Chip extends Fighter {
 	}
 
 	
-	// Skill 2
+	// ##### Skill 2 #####
 
 	// Variables
 	public final int S2_Velocity = 5;
@@ -98,7 +137,7 @@ public class Chip extends Fighter {
 	}
 	
 	
-	// Skill 3
+	// ##### Skill 3 #####
 	
 	@Override
 	public void skill3() {
@@ -124,7 +163,7 @@ public class Chip extends Fighter {
 	}
 	
 	
-	// Skill 4
+	// ##### Skill 4 #####
 	
 	@Override
 	public void skill4() {
