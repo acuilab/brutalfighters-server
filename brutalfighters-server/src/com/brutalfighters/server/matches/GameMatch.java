@@ -58,7 +58,7 @@ abstract public class GameMatch {
 	protected PlayerMap players;	// 所有玩家
 	protected PlayerMap[] teams;	// 所有队伍
 	
-	protected Flags flags;			// 旗
+	protected Flags flags;			// 旗帜
 	
 	protected Projectiles projectiles;
 	
@@ -150,12 +150,23 @@ abstract public class GameMatch {
 	}
 	
 	// Team Won / Finish Screen
+	/**
+	 * 获得获胜的队伍
+	 * @return
+	 */
 	public int getTeamWon() {
 		return teamWon;
 	}
+	/**
+	 * 设置获胜队伍
+	 * @param i
+	 */
 	public void setTeamWon(int i) {
 		this.teamWon = i;
 	}
+	/**
+	 * 重置获胜队伍
+	 */
 	public void resetTeamWon() {
 		this.teamWon = -1;
 	}
@@ -352,10 +363,21 @@ abstract public class GameMatch {
 	// UPDATES
 	public abstract void updateMatch(Iterator<Map.Entry<String,GameMatch>> iter);
 	
+	/**
+	 * 游戏是否结束
+	 * @param iter
+	 * @return
+	 */
 	protected boolean gameFinished(Iterator<Map.Entry<String,GameMatch>> iter) {
+		// 获胜队伍已经产生
+		// 或者比赛已空，玩家已全部离开
 		return getTeamWon() != -1 || checkEmpty(iter) || checkGameState();
 	}
 
+	/**
+	 * 检查游戏状态
+	 * @return
+	 */
 	protected boolean checkGameState() {
 		for(int i = 0; i < getScore().getFlags().length; i++) {
 			if(getScore().getFlags()[i] >= WIN_STATE) {
@@ -374,6 +396,11 @@ abstract public class GameMatch {
 		getFinish().resetCounter();
 	}
 	
+	/**
+	 * 检测比赛是否已空(玩家已全部离开)
+	 * @param iter
+	 * @return
+	 */
 	protected boolean checkEmpty(Iterator<Map.Entry<String,GameMatch>> iter) {
 		if(getPlayers().size() <= 0) {
 			removeMatch(iter);

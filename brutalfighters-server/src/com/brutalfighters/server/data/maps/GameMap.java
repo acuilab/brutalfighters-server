@@ -32,16 +32,24 @@ public class GameMap extends TiledMap {
 		this.setTopBoundary(getHeightScaledPixels()-5);
 	}	
 	
-	// Boundaries
+	// ##### Boundaries #####
 	public int getRightBoundary() {
 		return rightBoundary;
 	}
 	public void setRightBoundary(int rightBoundary) {
 		this.rightBoundary = rightBoundary;
 	}
+	/**
+	 * 获得左边界
+	 * @return
+	 */
 	public int getLeftBoundary() {
 		return leftBoundary;
 	}
+	/**
+	 * 设置左边界
+	 * @param leftBoundary
+	 */
 	public void setLeftBoundary(int leftBoundary) {
 		this.leftBoundary = leftBoundary;
 	}
@@ -59,17 +67,32 @@ public class GameMap extends TiledMap {
 		this.botBoundary = botBoundary;
 	}
 	
+	/**
+	 * 检查给定的x值是否在左右边界内
+	 * @param x
+	 * @return
+	 */
 	public boolean checkSideBoundaries(float x) {
 		return (x > getLeftBoundary() && x < getRightBoundary());
 	}
+	/**
+	 * 检查给定的y值是否在上下边界内
+	 * @param y
+	 * @return
+	 */
 	public boolean checkVerticalBoundaries(float y) {
 		return (y > getBotBoundary() && y < getTopBoundary());
 	}
+	/**
+	 * 检查给定的点是否在上下左右边界内
+	 * @param pos
+	 * @return
+	 */
 	public boolean checkBoundaries(Vec2 pos) {
 		return checkSideBoundaries(pos.getX()) && checkVerticalBoundaries(pos.getY());
 	}
 	
-	// Get Tiles
+	// ##### Get Tiles #####
 	@Override
 	public Tile getTile(int i, int x, int y) {
 		return tiledlayers.get(i).getTile(x,y);
@@ -124,7 +147,7 @@ public class GameMap extends TiledMap {
 	}
 	
 	
-	// Collision Detection
+	// ##### Collision Detection #####
 	
 	/**
 	 * @param bounds Rectangle is used for the AABB which is currently disabled on tiles.

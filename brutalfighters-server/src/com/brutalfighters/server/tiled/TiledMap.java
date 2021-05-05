@@ -95,11 +95,28 @@ public class TiledMap {
 	// ##### Tiles #####
 	
 	// Add Tiles
+	/**
+	 * 
+	 * @param i		瓦片层号
+	 * @param id	瓦片id
+	 */
 	public void addTile(int i, int id) {
-		tiledlayers.get(i).addTile(id, getTileWidth(), getTileHeight(), getTileset(id).getRatio(), getTileset(id).getBlocked(), getTileset(id).getStep());
+		tiledlayers.get(i).addTile(id, 
+				getTileWidth(), 
+				getTileHeight(), 
+				getTileset(id).getRatio(), 
+				getTileset(id).getBlocked(), 
+				getTileset(id).getStep());
 	}
 	
 	// Get Tiles
+	/**
+	 * 获得某层指定坐标处的瓦片
+	 * @param i	第几层瓦片
+	 * @param x	横坐标
+	 * @param y	纵坐标
+	 * @return
+	 */
 	public Tile getTile(int i, int x, int y) {
 		return tiledlayers.get(i).getTile(x,y);
 	}

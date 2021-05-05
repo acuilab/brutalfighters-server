@@ -1,5 +1,9 @@
 package com.brutalfighters.server.util;
 
+/**
+ * 游戏分数
+ *
+ */
 public class Score {
 	private int flags[];
 	private int kills[];

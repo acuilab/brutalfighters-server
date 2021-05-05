@@ -492,9 +492,11 @@ abstract public class Fighter {
 	}
 	public final void applyWalking() {
 		
-		// Air Momentum
+		// Air Momentum空气动力
 		float speed = getPlayer().isMidAir() ? getSpeed()*getAirForce() : getSpeed();
 		
+		// 将横向速度置为0
+		// 我们必须在这里使用它，不要担心，无论如何修改X速度时，我们都不应应用步行。
 		getPlayer().getVel().resetX(); // We must have it here, no worries, we should not apply walking when the X velocity is modified anyway.
 		if((getPlayer().isLeft() != getPlayer().isRight())) {
 			if(getPlayer().isRight()) {
@@ -597,6 +599,7 @@ abstract public class Fighter {
 
 	/**
 	 * 应用重力逻辑
+	 * 	若玩家在半空红，应用重力，否则将纵向速度设置为0
 	 * @return
 	 */
 	public final boolean applyGravity() {
@@ -977,8 +980,12 @@ abstract public class Fighter {
 		
 	}
 	
-	
+	/**
+	 * 
+	 * @return
+	 */
 	protected final float getSpeed() {
+		// 若玩家在跑步，则设置为跑步的横向速度，否则设置为走路的横向速度
 		return getPlayer().isRunning() ? getRunningSpeed().getX() : getWalkingSpeed().getX();
 	}
 	
