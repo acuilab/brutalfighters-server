@@ -5,8 +5,8 @@ package com.brutalfighters.server.util;
  *
  */
 public class Score {
-	private int flags[];
-	private int kills[];
+	private int flags[];	// 每队的旗帜数
+	private int kills[];	// 每队的杀人数
 	
 	public Score() {
 		setFlags(new int[] {0,0});

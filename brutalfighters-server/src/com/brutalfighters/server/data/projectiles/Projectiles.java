@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 /**
- * 粒子
+ * 抛射物列表
  *
  */
 public class Projectiles {

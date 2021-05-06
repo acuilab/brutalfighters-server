@@ -27,6 +27,10 @@ public class Flags {
 		this.flags[team] = flag;
 	}
 	
+	/**
+	 * 更新旗帜
+	 * GameMatch.updateGame().updateFlags()
+	 */
 	public void updateFlags() {
 		for(int i = 0; i < getFlags().length; i++) {
 			getFlag(i).updateFlag(i);

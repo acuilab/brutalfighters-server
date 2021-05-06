@@ -93,10 +93,25 @@ public class GameMap extends TiledMap {
 	}
 	
 	// ##### Get Tiles #####
+	/**
+	 * 获得瓦片
+	 * @param i
+	 * @param x
+	 * @param y
+	 * @return
+	 */
 	@Override
 	public Tile getTile(int i, int x, int y) {
+		System.out.println("i=" + i + ", x=" + x + ", y=" + y);
 		return tiledlayers.get(i).getTile(x,y);
 	}
+	/**
+	 * 获得瓦片
+	 * @param i
+	 * @param x
+	 * @param y
+	 * @return
+	 */
 	public Tile getTile(int i, float x, float y) {
 		return getTile(i, toCellX(x), toCellY(y));
 	}
@@ -150,7 +165,7 @@ public class GameMap extends TiledMap {
 	// ##### Collision Detection #####
 	
 	/**
-	 * @param bounds Rectangle is used for the AABB which is currently disabled on tiles.
+	 * @param bounds Rectangle is used for the AABB which is currently disabled on tiles.	矩形用于AABB，目前已在图块上禁用。
 	 */
 	public boolean intersects(String blocked, float x, float y, Rectangle bounds) {
 		
@@ -170,7 +185,7 @@ public class GameMap extends TiledMap {
 	}
 	
 	/**
-	 * @param bounds Rectangle is used for the AABB which is currently disabled on tiles.
+	 * @param bounds Rectangle is used for the AABB which is currently disabled on tiles.	矩形用于AABB，目前已在图块上禁用。
 	 */
 	public boolean intersects(float x, float y, Rectangle bounds) {
 		return intersects(Tileset.BLOCKED(), x, y, bounds);

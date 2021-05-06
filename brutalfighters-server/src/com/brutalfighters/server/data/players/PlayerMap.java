@@ -9,7 +9,7 @@ import com.brutalfighters.server.data.players.fighters.Fighter;
 import com.esotericsoftware.kryonet.Connection;
 
 /**
- * 封装了玩家的map，保存了所有玩家
+ * 封装了玩家的映射
  *
  */
 public class PlayerMap {

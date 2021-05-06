@@ -1,9 +1,18 @@
 package com.brutalfighters.server.util;
 
+/**
+ * 计时器
+ *
+ */
 public class Counter {
 	private int DEFAULT;
 	private int counter;
 	
+	/**
+	 * 构造函数
+	 * @param counter
+	 * @param DEFAULT
+	 */
 	public Counter(int counter, int DEFAULT) {
 		this.setDEFAULT(DEFAULT);
 		this.setCounter(counter);

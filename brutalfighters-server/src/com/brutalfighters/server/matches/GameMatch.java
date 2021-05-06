@@ -47,7 +47,7 @@ abstract public class GameMatch {
 	protected static final int TEAM2 = 1;		// 第二队
 	
 	/* Configurable */
-	protected static final int DEFAULT_PLAYER_LIMIT = 6;	// 默认玩家数
+	protected static final int DEFAULT_PLAYER_LIMIT = 6;	// 默认最大玩家数
 	protected static final int WIN_STATE = 3;				// 获胜状态3个棋子
 
 	/* Configurable */
@@ -78,30 +78,47 @@ abstract public class GameMatch {
 	
 	protected Counter warmup, finish;
 	
+	/**
+	 * 
+	 * @param mapName	地图名称
+	 * @param ID		比赛id
+	 * @param players	玩家
+	 * @param teams		队伍
+	 */
 	public GameMatch(String mapName, String ID, PlayerMap players, PlayerMap[] teams) {
+		// 设置地图名称
 		this.mapName = mapName;
 		
+		// 设置比赛id
 		changeID(ID);
 		
+		// 设置分数
 		setScore(new Score());
 		
+		// 设置玩家
 		setPlayers(players);
 		
+		// 设置队伍
 		setTeams(teams);
 		
+		// 设置旗帜(目前只支持两个队伍，每个队伍一个旗帜)
 		setFlags(new Flags(new Flag[] { Flag.getFlag(mapName, getTEAM1()), Flag.getFlag(mapName, getTEAM2()) }));
 		
+		// 设置抛射物
 		setProjectiles(new Projectiles());
 		
+		// 设置比赛最大玩家数
 		setPlayerLimit(getDefaultPlayerLimit());
 		
 		open();
 		
+		// 设置计时器（热身、结束、重生）
 		setWarmup(new Counter(getDefaultWarmup()));
 		setFinish(new Counter(getDefaultFinish()));
 		
 		setRespawnTime(getDefaultRespawn());
 		
+		// 设置获胜队伍
 		setTeamWon(-1);
 	}
 	
@@ -109,9 +126,17 @@ abstract public class GameMatch {
 		this(mapName, ID, new PlayerMap(), new PlayerMap[]{new PlayerMap(),new PlayerMap()});
 	}
 	
+	/**
+	 * 获得队伍个数
+	 * @return
+	 */
 	public static int getTeamLength() {
 		return TEAM_LENGTH;
 	}
+	/**
+	 * 获得比赛默认最大玩家数
+	 * @return
+	 */
 	public static int getDefaultPlayerLimit() {
 		return DEFAULT_PLAYER_LIMIT;
 	}
@@ -242,6 +267,12 @@ abstract public class GameMatch {
 		this.players = players;
 	}
 	
+	/**
+	 * 增加玩家
+	 * @param connection
+	 * @param m_id
+	 * @param fighter
+	 */
 	public void addPlayer(Connection connection, String m_id, String fighter) {
 		
 		fighter = Character.toUpperCase(fighter.charAt(0)) + fighter.substring(1);
@@ -266,6 +297,10 @@ abstract public class GameMatch {
 	public Fighter getPlayer(Connection connection) {
 		return getPlayers().get(connection);
 	}
+	/**
+	 * 移除玩家
+	 * @param connection
+	 */
 	public void removePlayer(Connection connection) {
 		getTeam1().remove(connection);
 		getTeam2().remove(connection);
@@ -290,6 +325,11 @@ abstract public class GameMatch {
 			return null;
 		}
 	}
+	/**
+	 * 获得敌人队伍
+	 * @param team
+	 * @return
+	 */
 	public PlayerMap getEnemyTeam(int team) {
 		if(team == getTEAM1()) {
 			return getTeam2();
@@ -411,9 +451,15 @@ abstract public class GameMatch {
 	protected void updateWarmup() {
 		getWarmup().subCounter(GameServer.getDelay());
 	}
+	/**
+	 * 更新游戏
+	 */
 	protected void updateGame() {
+		// ###1 更新玩家
 		updatePlayers();
+		// ###2 更新抛射物
 		updateProjectiles();
+		// ###3 更新旗帜
 		updateFlags();
 	}
 	
