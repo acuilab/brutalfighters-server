@@ -96,7 +96,12 @@ public class GameMatchManager {
 	}
 
 	// Player Disconnection Handling
+	/**
+	 * 玩家断开连接处理
+	 * @param cnct
+	 */
 	public static void disconnectPlayer(Connection cnct) {
+		// 从比赛中移除玩家
 		closedMatches.removePlayer(cnct);
 		openMatches.removePlayer(cnct);
 		freestyleMatches.removePlayer(cnct);

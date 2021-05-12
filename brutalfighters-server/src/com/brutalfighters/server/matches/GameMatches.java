@@ -34,12 +34,22 @@ public class GameMatches<T extends GameMatch> {
 		return players;
 	}
 	
+	/**
+	 * 获得比赛
+	 * @param id
+	 * @return
+	 */
 	public T getMatch(String id) {
 		if(matches.containsKey(id)) {
 			return matches.get(id);
 		}
 		return null;
 	}
+	/**
+	 * 获得比赛
+	 * @param cnct
+	 * @return
+	 */
 	public T getMatch(Connection cnct) {
 		return getMatch(players.get(cnct));
 	}
@@ -109,6 +119,10 @@ public class GameMatches<T extends GameMatch> {
 	public void connectPlayer(Connection cnct, String fighter) {
 		connectPlayer(cnct, getAvailableMatch(), fighter);
 	}
+	/**
+	 * 移除玩家
+	 * @param cnct
+	 */
 	public void removePlayer(Connection cnct) {
 		System.out.println("Player Removed!"); //$NON-NLS-1$
 		if(getMatch(cnct) != null) {
