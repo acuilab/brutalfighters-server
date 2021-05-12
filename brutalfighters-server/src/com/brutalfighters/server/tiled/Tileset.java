@@ -9,7 +9,7 @@ import java.util.Map;
  */
 public class Tileset {
 	
-	private static final String BLOCKED = "blocked";
+	private static final String BLOCKED = "blocked";	// 障碍物
 	private static final String BLOCKED_TOP = "top";
 	private static final String STEP = "step";
 	private static final String TELEPORT = "teleport";
@@ -57,8 +57,12 @@ public class Tileset {
 		return getProperty(STEP()).toString();
 	}
 	
+	/**
+	 * 获得ratio属性
+	 * @return
+	 */
 	public float getRatio() {
 		String ratio = getProperty(RATIO()).toString();
-		return !ratio.equals("none") ? Float.parseFloat(ratio) : 1;  //$NON-NLS-1$
+		return !ratio.equals("none") ? Float.parseFloat(ratio) : 1;
 	}
 }

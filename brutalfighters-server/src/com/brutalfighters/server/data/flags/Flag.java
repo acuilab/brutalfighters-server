@@ -12,7 +12,7 @@ import com.brutalfighters.server.util.Vec2;
 import com.esotericsoftware.kryonet.Connection;
 
 /**
- * 旗帜
+ * 旗帜（实际上是对旗帜数据的一个简单封装）
  *
  */
 public class Flag {
@@ -30,6 +30,12 @@ public class Flag {
 	}
 	
 	/* Getters and Setters */
+	/**
+	 * 
+	 * @param map	地图名称
+	 * @param team	队伍索引
+	 * @return
+	 */
 	public static Flag getFlag(String map, int team) {
 		return MapManager.getMap(map).getFlag(team);
 	}
@@ -45,10 +51,18 @@ public class Flag {
 		return collides(mflag);
 	}
 	
+	/**
+	 * 更新旗帜
+	 * 	1 旗帜被扛
+	 * 	2 旗帜没被扛
+	 * GameMatch.updateGame().updateFlags()
+	 * @param index	队伍索引
+	 */
 	public void updateFlag(int index) {
 		// FLAG IS NOT TAKEN
 		if(!getFlag().isTaken()) {
-			getFlag().getVel().setX(0);
+			// ### 旗帜没有被扛
+			getFlag().getVel().setX(0);	// 旗帜横向速度重置为0
 			if(!collidesBot()) {
 				getFlag().getVel().setY(-FlagData.getGravity());
 			} else if(getFlag().getVel().getY() != 0) {
@@ -61,6 +75,7 @@ public class Flag {
 		
 		// FLAG IS TAKEN
 		} else {
+			// ### 旗帜被扛
 			boolean isTaken = false;
 			
 			PlayerData p;
@@ -104,7 +119,13 @@ public class Flag {
 	public boolean collides(Flag flag) {
 		return getBounds().intersects(flag.getBounds());
 	}
+	/**
+	 * 
+	 * @return
+	 */
 	public boolean collidesBot() {
-		return GameMatchManager.getCurrentMap().intersects(getFlag().getPos().getX(), getFlag().getPos().getY()-FlagData.getSize().getY()/2, getBounds());
+		return GameMatchManager.getCurrentMap().intersects(getFlag().getPos().getX(), 
+				getFlag().getPos().getY()-FlagData.getSize().getY()/2, 
+				getBounds());
 	}
 }

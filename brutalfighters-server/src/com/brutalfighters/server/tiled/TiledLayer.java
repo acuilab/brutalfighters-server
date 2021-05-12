@@ -22,12 +22,12 @@ public class TiledLayer {
 	
 	/**
 	 * 增加一个瓦片
-	 * @param id
-	 * @param tileWidth
-	 * @param tileHeight
-	 * @param ratio
-	 * @param blocked
-	 * @param step
+	 * @param id			id
+	 * @param tileWidth		瓦片宽度
+	 * @param tileHeight	瓦片高度
+	 * @param ratio			三属性之ratio
+	 * @param blocked		三属性之blocked
+	 * @param step			三属性之step
 	 */
 	public void addTile(int id, 
 			int tileWidth, 
@@ -35,9 +35,33 @@ public class TiledLayer {
 			float ratio, 
 			String blocked, 
 			String step) {
-		tiles.add(new Tile(id, (getHeight() - tiles.size() / getWidth()) * tileHeight, tiles.size() % getWidth() * tileWidth, tileHeight, tileWidth, ratio, blocked, step));
+		/**
+		 * 构造函数
+		 * @param id
+		 * @param y
+		 * @param x
+		 * @param height
+		 * @param width
+		 * @param ratio
+		 * @param blocked
+		 * @param step
+		 */
+		tiles.add(new Tile(id, 
+				(getHeight() - tiles.size() / getWidth()) * tileHeight, // 像素纵坐标(左下角为原点)
+				tiles.size() % getWidth() * tileWidth, 					// 像素横坐标(左下角为原点)
+				tileHeight, 
+				tileWidth, 
+				ratio, 
+				blocked, 
+				step));
 		
 	}
+	/**
+	 * 获得本层指定坐标处的瓦片(原点位于左上角)
+	 * @param x
+	 * @param y
+	 * @return
+	 */
 	public Tile getTile(int x, int y) {
 		int i = (getHeight()-y) * width + x;
 		return i < tiles.size() ? tiles.get(i) : getTile(0,0);

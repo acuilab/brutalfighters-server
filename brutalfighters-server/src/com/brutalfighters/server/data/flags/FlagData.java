@@ -4,6 +4,7 @@ import com.brutalfighters.server.util.Vec2;
 
 /**
  * 旗帜数据
+ * 	位置、速度、是否被夺、朝向
  *
  */
 public class FlagData {

@@ -13,16 +13,20 @@ import com.brutalfighters.server.util.CollisionDetection;
 import com.brutalfighters.server.util.Vec2;
 import com.esotericsoftware.kryonet.Connection;
 
+/**
+ * 抛射物抽象类
+ *
+ */
 abstract public class Projectile extends Collidable {
 	
-	protected Fighter fighter;
-	protected int team;
+	protected Fighter fighter;	// 所属战士
+	protected int team;			// 所属队伍
 	
-	protected float dmg;
-	protected Buff[] buffs;
-	protected float speed;
+	protected float dmg;		// 
+	protected Buff[] buffs;		// 增益效果
+	protected float speed;		// 速度
 	
-	protected ProjectileData projectile;
+	protected ProjectileData projectile;	// 抛射物数据
 	
 	protected Projectile(String name, Fighter fighter, String flip, Vec2 pos, Vec2 size, float speed, float dmg, Buff[] buffs) {
 		setProjectile(new ProjectileData(name, flip, pos, size));
@@ -82,17 +86,38 @@ abstract public class Projectile extends Collidable {
 		return bounds;
 	}
 	
+	/**
+	 * 根据抛射物的位置和大小为抛射物设置碰撞边框
+	 */
 	public void setBounds() {
-		CollisionDetection.setBounds(bounds, "both", getProjectile().getPos().getX(), getProjectile().getPos().getY(), getProjectile().getSize().getX(), getProjectile().getSize().getY()); //$NON-NLS-1$
+		CollisionDetection.setBounds(bounds, 
+				"both", 
+				getProjectile().getPos().getX(), 
+				getProjectile().getPos().getY(), 
+				getProjectile().getSize().getX(), 
+				getProjectile().getSize().getY());
 	}
 	
+	/**
+	 * 某个连接是否是抛射物的所有人
+	 * @param cnct
+	 * @return
+	 */
 	public boolean isOwner(Connection cnct) {
 		return getFighter().getConnection().equals(cnct);
 	}
+	/**
+	 * 某个战士是否是抛射物的所有人
+	 * @param fighter
+	 * @return
+	 */
 	public boolean isOwner(Fighter fighter) {
 		return getFighter().equals(fighter);
 	}
 
+	/**
+	 * 初始化
+	 */
 	public void initialize() {
 		if(isColliding()) {
 			getProjectile().setExplode();
@@ -117,8 +142,15 @@ abstract public class Projectile extends Collidable {
 		}
 	}
 	
+	/**
+	 * 抛射物是否正在发生碰撞
+	 * 我们可能会对其进行修改，因此它不是静态的。
+	 * @return
+	 */
 	public boolean isColliding() { // We may modify it, so it's not static.
-		return !GameMatchManager.getCurrentMap().checkBoundaries(getProjectile().getPos()) || GameMatchManager.getCurrentMap().intersects(getProjectile().getPos().getX(), getProjectile().getPos().getY(), getBounds());
+		// 抛射物位于上下左右边界之外
+		return !GameMatchManager.getCurrentMap().checkBoundaries(getProjectile().getPos()) || 
+				GameMatchManager.getCurrentMap().intersects(getProjectile().getPos().getX(), getProjectile().getPos().getY(), getBounds());
 	}
 	
 	public boolean dealDamage() {

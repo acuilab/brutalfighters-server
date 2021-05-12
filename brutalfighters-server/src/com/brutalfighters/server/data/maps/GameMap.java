@@ -32,16 +32,24 @@ public class GameMap extends TiledMap {
 		this.setTopBoundary(getHeightScaledPixels()-5);
 	}	
 	
-	// Boundaries
+	// ##### Boundaries #####
 	public int getRightBoundary() {
 		return rightBoundary;
 	}
 	public void setRightBoundary(int rightBoundary) {
 		this.rightBoundary = rightBoundary;
 	}
+	/**
+	 * 获得左边界
+	 * @return
+	 */
 	public int getLeftBoundary() {
 		return leftBoundary;
 	}
+	/**
+	 * 设置左边界
+	 * @param leftBoundary
+	 */
 	public void setLeftBoundary(int leftBoundary) {
 		this.leftBoundary = leftBoundary;
 	}
@@ -59,21 +67,51 @@ public class GameMap extends TiledMap {
 		this.botBoundary = botBoundary;
 	}
 	
+	/**
+	 * 检查给定的x值是否在左右边界内
+	 * @param x
+	 * @return
+	 */
 	public boolean checkSideBoundaries(float x) {
 		return (x > getLeftBoundary() && x < getRightBoundary());
 	}
+	/**
+	 * 检查给定的y值是否在上下边界内
+	 * @param y
+	 * @return
+	 */
 	public boolean checkVerticalBoundaries(float y) {
 		return (y > getBotBoundary() && y < getTopBoundary());
 	}
+	/**
+	 * 检查给定的点是否在上下左右边界内
+	 * @param pos
+	 * @return
+	 */
 	public boolean checkBoundaries(Vec2 pos) {
 		return checkSideBoundaries(pos.getX()) && checkVerticalBoundaries(pos.getY());
 	}
 	
-	// Get Tiles
+	// ##### Get Tiles #####
+	/**
+	 * 获得瓦片
+	 * @param i
+	 * @param x
+	 * @param y
+	 * @return
+	 */
 	@Override
 	public Tile getTile(int i, int x, int y) {
+		System.out.println("i=" + i + ", x=" + x + ", y=" + y);
 		return tiledlayers.get(i).getTile(x,y);
 	}
+	/**
+	 * 获得瓦片
+	 * @param i
+	 * @param x
+	 * @param y
+	 * @return
+	 */
 	public Tile getTile(int i, float x, float y) {
 		return getTile(i, toCellX(x), toCellY(y));
 	}
@@ -124,10 +162,10 @@ public class GameMap extends TiledMap {
 	}
 	
 	
-	// Collision Detection
+	// ##### Collision Detection #####
 	
 	/**
-	 * @param bounds Rectangle is used for the AABB which is currently disabled on tiles.
+	 * @param bounds Rectangle is used for the AABB which is currently disabled on tiles.	矩形用于AABB，目前已在图块上禁用。
 	 */
 	public boolean intersects(String blocked, float x, float y, Rectangle bounds) {
 		
@@ -147,7 +185,7 @@ public class GameMap extends TiledMap {
 	}
 	
 	/**
-	 * @param bounds Rectangle is used for the AABB which is currently disabled on tiles.
+	 * @param bounds Rectangle is used for the AABB which is currently disabled on tiles.	矩形用于AABB，目前已在图块上禁用。
 	 */
 	public boolean intersects(float x, float y, Rectangle bounds) {
 		return intersects(Tileset.BLOCKED(), x, y, bounds);

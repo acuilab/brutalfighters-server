@@ -104,7 +104,7 @@ abstract public class Buff {
 		return getBuff().getTime() / GameServer.getDelay() % number == 0;
 	}
 	/**
-	 * 获得新的增益
+	 * 工厂方法：获得新的增益
 	 * @return
 	 */
 	abstract public Buff getNewBuff();

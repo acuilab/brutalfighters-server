@@ -3,6 +3,10 @@ package com.brutalfighters.server.data.projectiles;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+/**
+ * 抛射物列表
+ *
+ */
 public class Projectiles {
 	private ArrayList<Projectile> projectiles;
 	

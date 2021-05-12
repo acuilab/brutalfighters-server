@@ -2,6 +2,11 @@ package com.brutalfighters.server.data.projectiles;
 
 import com.brutalfighters.server.util.Vec2;
 
+/**
+ * 抛射物数据
+ * 	位置、速度、大小、名称、方向、模式、时间
+ *
+ */
 public class ProjectileData {
 	
 	private static final String INIT = "init"; //$NON-NLS-1$
