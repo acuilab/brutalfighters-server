@@ -11,12 +11,13 @@ import com.brutalfighters.server.data.players.fighters.Fighter;
 import com.esotericsoftware.kryonet.Connection;
 
 /**
- * 所有游戏比赛
+ * 保存了某类游戏比赛和该类比赛中的玩家
+ * 目前有三类比赛：closedMatches、openMatches、freestyleMatches
  *
  * @param <T>
  */
 public class GameMatches<T extends GameMatch> {
-	private Class<T> gameMatch;
+	private Class<T> gameMatch;						// 这是一个class对象，通过反射调用其构造函数实例化一个比赛
 	private HashMap <String, T> matches;
 	private HashMap <Connection, String> players;	// 保存所有玩家（连接，ID)
 	
@@ -67,13 +68,25 @@ public class GameMatches<T extends GameMatch> {
 		matches.put(ID, match);
 	}
 	
+	/**
+	 * 使用一个SKID(Secure Key ID)设置比赛
+	 * @param mapName	地图名称
+	 * @param players	玩家
+	 * @param teams		队伍
+	 * @return
+	 */
 	public String setupMatch(String mapName, PlayerMap players, PlayerMap[] teams) { // It setups a match, with a SKID and stuff.
 		try {
+			// 生成skid
 			String ID = GameMatchManager.uniqueSecureKeyID();
+			// 调用构造函数实例化一个比赛
 			T match = gameMatch.getConstructor(String.class, String.class, PlayerMap.class, PlayerMap[].class).newInstance(mapName, ID, players, teams);
+			// 切换id
 			match.changeID(ID);
+			// 增加比赛
 			addMatch(ID, match);
 			
+			// 返回skid
 			return ID;
 		} catch (InstantiationException | IllegalAccessException
 				| IllegalArgumentException | InvocationTargetException
@@ -101,6 +114,10 @@ public class GameMatches<T extends GameMatch> {
 		
 		return null;
 	}
+	/**
+	 * 使用默认地图设置一个新的比赛
+	 * @return
+	 */
 	public String setupMatch() {
 		return setupMatch(MapManager.getDefaultMap());
 	}
@@ -142,24 +159,37 @@ public class GameMatches<T extends GameMatch> {
 		return null;
 	}
 	
+	/**
+	 * 获得比赛数量
+	 * @return
+	 */
 	public int getMatchesLength() {
 		return matches.size();
 	}
+	/**
+	 * 获得比赛中的玩家
+	 * @return
+	 */
 	public int getPlayersPlaying() {
 		return players.size();
 	}
 	
 	/* Search Matches */
 	public String getAvailableMatch() {
-		System.out.println("Searching for an available match.."); //$NON-NLS-1$
+		/**
+		 * 遍历查找可用的比赛
+		 */
+		System.out.println("Searching for an available match..");
 		for (Entry<String, T> entry : getMatches().entrySet()) {
 		    if(!entry.getValue().isFull() && entry.getValue().isOpen()) {
-		    	System.out.println("Found a match!"); //$NON-NLS-1$
+		    	// 比赛未满且比赛是开放的
+		    	System.out.println("Found a match!");
 		    	return entry.getKey();
 		    }
 		}
 		
-		System.out.println("Didn't find, going to setup one.."); //$NON-NLS-1$
+		// 未找到，设置一个新的比赛
+		System.out.println("Didn't find, going to setup one..");
 		return setupMatch();
 	}
 

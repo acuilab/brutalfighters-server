@@ -53,6 +53,9 @@ public class FreestyleGameMatch extends GameMatch {
 		}
 	}
 	
+	/**
+	 * 游戏是否已完成
+	 */
 	@Override
 	protected boolean gameFinished(Iterator<Map.Entry<String,GameMatch>> iter) {
 		return checkEmpty(iter);

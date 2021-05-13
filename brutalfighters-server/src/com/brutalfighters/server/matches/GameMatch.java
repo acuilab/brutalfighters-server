@@ -64,9 +64,9 @@ abstract public class GameMatch {
 	
 	protected final String mapName;
 	
-	protected int playerLimit;
+	protected int playerLimit;		// 最大玩家数量
 	
-	protected boolean isOpen;
+	protected boolean isOpen;		// 游戏比赛是否打开
 	
 	protected String ID;
 	
@@ -110,6 +110,7 @@ abstract public class GameMatch {
 		// 设置比赛最大玩家数
 		setPlayerLimit(getDefaultPlayerLimit());
 		
+		// 初始比赛是打开状态
 		open();
 		
 		// 设置计时器（热身、结束、重生）
@@ -210,15 +211,29 @@ abstract public class GameMatch {
 		this.ID = ID;
 	}
 	
+	/**
+	 * 比赛是否已经满了
+	 * @return
+	 */
 	public boolean isFull() {
 		return getPlayerLimit() == getPlayers().size();
 	}
+	/**
+	 * 比赛是否打开
+	 * @return
+	 */
 	public boolean isOpen() {
 		return isOpen;
 	}
+	/**
+	 * 将比赛置为打开状态
+	 */
 	public void open() {
 		isOpen = true;
 	}
+	/**
+	 * 将比赛打开状态关闭
+	 */
 	public void close() {
 		isOpen = false;
 	}
@@ -260,9 +275,17 @@ abstract public class GameMatch {
 		this.finish = FINISH;
 	}
 	
+	/**
+	 * 获得比赛中的玩家
+	 * @return
+	 */
 	public PlayerMap getPlayers() {
 		return players;
 	}
+	/**
+	 * 设置比赛中的玩家
+	 * @param players
+	 */
 	public void setPlayers(PlayerMap players) {
 		this.players = players;
 	}
@@ -438,6 +461,7 @@ abstract public class GameMatch {
 	
 	/**
 	 * 检测比赛是否已空(玩家已全部离开)
+	 * 	对于已经没有玩家的比赛，会做移除比赛处理
 	 * @param iter
 	 * @return
 	 */
@@ -608,11 +632,19 @@ abstract public class GameMatch {
 		}
 	}
 	
+	/**
+	 * 向客户端发送udp消息
+	 * @param packet
+	 */
 	protected void updateClients(Packet packet) {
 		for(Connection cnct : getPlayers().keySet()) {
 			cnct.sendUDP(packet);
 		}
 	}
+	/**
+	 * 向客户端发送tcp消息
+	 * @param packet
+	 */
 	protected void updateClientsTCP(Packet packet) {
 		for(Connection cnct : getPlayers().keySet()) {
 			cnct.sendTCP(packet);

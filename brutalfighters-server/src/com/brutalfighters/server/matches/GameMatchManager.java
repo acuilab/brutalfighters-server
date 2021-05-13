@@ -13,7 +13,8 @@ import com.brutalfighters.server.data.projectiles.Projectiles;
 import com.esotericsoftware.kryonet.Connection;
 
 /**
- * 游戏比赛管理器
+ * 游戏比赛管理器（这是一个总的数据结构）
+ * 该类管理了3种类型的比赛：closedMatches、openMatches、freestyleMatches
  *
  */
 public class GameMatchManager {
@@ -118,20 +119,32 @@ public class GameMatchManager {
 	}
 	
 	// Update Matches -- We can't update the matches in the `GameMatches` class because we have to setCurrentMatch(GameMatch);
+	// 更新比赛
 	private static void updateMatch(Iterator<Map.Entry<String,GameMatch>> iter, GameMatch match) {
 		setCurrentMatch(match);
 		updateCurrentMatch(iter);
 	}
+	/**
+	 * 更新比赛
+	 * @param matches
+	 */
 	private static void updateMatches(GameMatches matches) {
+		// 遍历所有比赛
 		Iterator<Map.Entry<String,GameMatch>> iter = matches.getMatches().entrySet().iterator();
 		while (iter.hasNext()) {
 		    Map.Entry<String,GameMatch> entry = iter.next();
 		    updateMatch(iter, entry.getValue());
 		}
 	}
+	/**
+	 * 更新管理器
+	 */
 	public static void updateManager() {
+		// 1 更新closedMatches
 		updateMatches(closedMatches);
+		// 2 更新openMatches
 		updateMatches(openMatches);
+		// 3 更新freestyleMatches
 		updateMatches(freestyleMatches);
 	}
 	

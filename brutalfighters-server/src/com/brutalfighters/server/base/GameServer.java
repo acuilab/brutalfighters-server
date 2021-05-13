@@ -53,27 +53,34 @@ public class GameServer {
 	// 服务器50毫秒刷新一次，一秒钟刷新20次
 	private static final int DELAY = 50;
 
+	/**
+	 * 加载游戏服务器
+	 * @throws IOException
+	 */
 	public static void Load() throws IOException {
-		// 实例化MPServer并注册数据包
+		// 实例化MPServer（MPServer是对kryonet和kryo的封装）并注册数据包
 		server = new MPServer(new NetworkListener());
 		registerPackets();
 
+		// 注册地图，初始化游戏比赛管理器
 		MapManager.registerMaps();
 		GameMatchManager.gameMatchManager();
 		
+		// 心跳定时器
 		timer = new Timer();
 		timer.scheduleAtFixedRate(new TimerTask() {
 
 			@Override
 			public void run() {
+				// 进入心跳，更新管理器
 				GameMatchManager.updateManager();
 			}
 			
 		}, DELAY, DELAY);
 		
-		MapManager.registerMaps();
-		GameMatchManager.gameMatchManager();
-		 
+//		// ..又执行了一遍..Why!!
+//		MapManager.registerMaps();
+//		GameMatchManager.gameMatchManager();
 	}
 
 	private static void registerPackets() {
@@ -101,12 +108,21 @@ public class GameServer {
 		server.getKryo().register(PlayerData.class);
 		server.getKryo().register(PlayerData[].class);
 		
+		/**
+		 * 抛射物
+		 */
 		server.getKryo().register(ProjectileData.class);
 		server.getKryo().register(ProjectileData[].class);
 		
+		/**
+		 * 旗帜
+		 */
 		server.getKryo().register(FlagData.class);
 		server.getKryo().register(FlagData[].class);
 		
+		/**
+		 * 分数
+		 */
 		server.getKryo().register(Score.class);
 		
 		server.getKryo().register(Packet1Connected.class);
@@ -114,6 +130,9 @@ public class GameServer {
 		server.getKryo().register(Packet2MatchOver.class);
 		server.getKryo().register(Packet2MatchFinished.class);
 		
+		/**
+		 * 3 输入
+		 */
 		server.getKryo().register(Packet3InputLeft.class);
 		server.getKryo().register(Packet3InputRight.class);
 		server.getKryo().register(Packet3InputJump.class);
@@ -125,6 +144,9 @@ public class GameServer {
 		server.getKryo().register(Packet3InputSkill4.class);
 		server.getKryo().register(Packet3InputTeleport.class);
 		
+		/**
+		 * 4 释放
+		 */
 		server.getKryo().register(Packet4ReleaseLeft.class);
 		server.getKryo().register(Packet4ReleaseRight.class);
 		server.getKryo().register(Packet4ReleaseJump.class);
@@ -136,6 +158,9 @@ public class GameServer {
 		server.getKryo().register(Packet4ReleaseSkill4.class);
 		server.getKryo().register(Packet4ReleaseTeleport.class);
 		
+		/**
+		 * 逃离比赛
+		 */
 		server.getKryo().register(Packet5EscapeMatch.class);
 		
 	}
