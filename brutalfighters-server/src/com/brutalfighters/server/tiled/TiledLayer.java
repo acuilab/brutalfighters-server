@@ -8,7 +8,7 @@ import java.util.List;
  *
  */
 public class TiledLayer {
-	// 宽度、高度及包含的瓦片列表
+	// 宽度(逻辑单位，瓦片个数)、高度(逻辑单位，瓦片个数)及包含的瓦片列表
 	private int width, height;
 	private List<Tile> tiles = new ArrayList<Tile>();
 	

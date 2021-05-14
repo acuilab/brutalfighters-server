@@ -9,6 +9,7 @@ import java.util.Map;
  */
 public class Tileset {
 	
+	// 下面这几个字符串常量都是属性的键值
 	private static final String BLOCKED = "blocked";	// 障碍物
 	private static final String BLOCKED_TOP = "top";
 	private static final String STEP = "step";

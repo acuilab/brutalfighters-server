@@ -10,7 +10,7 @@ import java.util.List;
  *
  */
 public class TiledMap {
-	// 地图宽度，地图高度，瓦片宽度，瓦片高度，瓦片属性集集合和瓦片层集合
+	// 地图宽度(逻辑单位，瓦片个数)，地图高度(逻辑单位，瓦片个数)，瓦片宽度（物理单位，像素），瓦片高度（物理单位，像素），瓦片属性集集合和瓦片层集合
 	protected int width, height, tileWidth, tileHeight;
 	protected HashMap<Integer,Tileset> tilesets = new HashMap<Integer,Tileset>();
 	protected List<TiledLayer> tiledlayers = new ArrayList<TiledLayer>();
