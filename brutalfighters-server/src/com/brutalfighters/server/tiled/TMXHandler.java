@@ -26,12 +26,12 @@ public class TMXHandler extends DefaultHandler {
 			map.addTileset(0); 
 		} else if(qName.equalsIgnoreCase("stile")) { 
 			// Adds tileset, will add properties later
-			// 添加瓦片集，稍后再添加属性
+			// 添加瓦片集，稍后再添加属性（瓦片集的id从1开始）
 			tilesetID = Integer.parseInt(attributes.getValue("id")) + 1;
 			map.addTileset(tilesetID);
 		} else if(qName.equalsIgnoreCase("property")) { 
 			// Adds property to the last tileset, because the latest is the current.
-			// 将属性添加到最后一个瓦片集，因为最新的是当前瓦片。
+			// 将属性添加到最后一个瓦片集，因为最后那个是当前瓦片。
 			map.editTileset(tilesetID, 
 					attributes.getValue("name"), 
 					attributes.getValue("value"));
@@ -42,7 +42,7 @@ public class TMXHandler extends DefaultHandler {
 					Integer.parseInt(attributes.getValue("height")));
 		} else if(qName.equalsIgnoreCase("tile")) { 
 			// Adds tiles into the map, into the last layer, because the latest is the current.
-			// 将图块添加到地图的最后一层，因为最新的是当前图层。
+			// 将图块添加到地图的最后一层，因为最后那个是当前图层。
 			map.addTile(map.getTiledLayersLength() - 1, 
 					Integer.parseInt(attributes.getValue("gid")));
 		}

@@ -113,45 +113,87 @@ public class TiledMap {
 	/**
 	 * 获得某层指定坐标处的瓦片
 	 * @param i	第几层瓦片
-	 * @param x	横坐标
-	 * @param y	纵坐标
+	 * @param x	横坐标（逻辑单位，原点位于左上角）
+	 * @param y	纵坐标（逻辑单位，原点位于左上角）
 	 * @return
 	 */
 	public Tile getTile(int i, int x, int y) {
 		return tiledlayers.get(i).getTile(x,y);
 	}
+	/**
+	 * 获得某层指定坐标处的瓦片id
+	 * @param i	第几层瓦片
+	 * @param x	横坐标（逻辑单位，原点位于左上角）
+	 * @param y	纵坐标（逻辑单位，原点位于左上角）
+	 * @return
+	 */
 	public int getID(int i, int x, int y) {
 		return getTile(i,x,y).getID();
 	}
 	
-	// Other map
+	// ##### Other map #####
+	/**
+	 * 地图宽度(逻辑单位，瓦片个数)
+	 * @return
+	 */
 	public int getWidth() {
 		return width;
 	}
-	
+	/**
+	 * 地图高度(逻辑单位，瓦片个数)
+	 * @return
+	 */
 	public int getHeight() {
 		return height;
 	}
+	/**
+	 * 地图的像素宽度
+	 * @return
+	 */
 	public int getWidthPixels() {
 		return width * getTileWidth();
 	}
-	
+	/**
+	 * 地图的像素高度
+	 * @return
+	 */
 	public int getHeightPixels() {
 		return height * getTileHeight();
 	}
-
+	/**
+	 * 获得瓦片的像素宽度
+	 * @return
+	 */
 	public int getTileWidth() {
 		return tileWidth;
 	}
-
+	/**
+	 * 获得瓦片的像素高度
+	 * @return
+	 */
 	public int getTileHeight() {
 		return tileHeight;
 	}
 	
 	// ##### Collision Detection #####
+	/**
+	 * 获得某层指定坐标处的瓦片边框
+	 * @param layer	第几层瓦片
+	 * @param x	横坐标（逻辑单位，原点位于左上角）
+	 * @param y	纵坐标（逻辑单位，原点位于左上角）
+	 * @return
+	 */
 	public Rectangle getBounds(int layer, int x, int y) {
 		return getTile(layer,x,y).getBounds();
 	}
+	/**
+	 * 某层指定坐标处的瓦片是否与某个矩形框相交
+	 * @param layer		第几层瓦片
+	 * @param x			横坐标（逻辑单位，原点位于左上角）
+	 * @param y			纵坐标（逻辑单位，原点位于左上角）
+	 * @param bounds	某个矩形框
+	 * @return
+	 */
 	public boolean intersect(int layer, int x, int y, Rectangle bounds) {
 		return getBounds(layer,x,y).intersects(bounds);
 	}

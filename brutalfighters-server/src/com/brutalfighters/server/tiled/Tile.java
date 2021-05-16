@@ -15,10 +15,10 @@ public class Tile extends Collidable {
 	/**
 	 * 构造函数
 	 * @param id		id
-	 * @param y			纵坐标
-	 * @param x			横坐标
-	 * @param height	高度
-	 * @param width		宽度
+	 * @param y			像素纵坐标(左下角为原点)
+	 * @param x			像素横坐标(左下角为原点)
+	 * @param height	像素高度（左下角为原点）
+	 * @param width		像素宽度（左下角为原点）
 	 * @param ratio		三属性之ratio
 	 * @param blocked	三属性之blocked
 	 * @param step		三属性之step

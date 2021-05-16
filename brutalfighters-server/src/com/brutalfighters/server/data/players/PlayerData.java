@@ -493,13 +493,13 @@ public class PlayerData {
 		this.isFlagged = isFlagged;
 	}
 	/**
-	 * 偷旗
+	 * 偷到旗了
 	 */
 	public void stoleFlag() {
 		this.isFlagged = true;
 	}
 	/**
-	 * 放旗
+	 * 把旗扔了
 	 */
 	public void droppedFlag() {
 		this.isFlagged = false;

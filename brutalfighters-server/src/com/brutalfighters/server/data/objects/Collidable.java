@@ -9,6 +9,13 @@ import java.awt.Rectangle;
 public class Collidable {
 	protected Rectangle bounds;
 	
+	/**
+	 * 
+	 * @param x			像素横坐标(左下角为原点)
+	 * @param y			像素纵坐标(左下角为原点)
+	 * @param width		像素宽度(左下角为原点)
+	 * @param height	像素高度(左下角为原点)
+	 */
 	public void Rectangle(int x, int y, int width, int height) {
 		Rectangle(new Rectangle(x,y,width,height));
 	}
@@ -23,6 +30,13 @@ public class Collidable {
 	public void setBounds(Rectangle bounds) {
 		this.bounds.setBounds(bounds);
 	}
+	/**
+	 * 
+	 * @param x			像素横坐标(左下角为原点)
+	 * @param y			像素纵坐标(左下角为原点)
+	 * @param width		像素宽度(左下角为原点)
+	 * @param height	像素高度(左下角为原点)
+	 */
 	public void setBounds(int x, int y, int width, int height) {
 		setBounds(new Rectangle(x, y, width, height));
 	}

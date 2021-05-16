@@ -22,11 +22,23 @@ public class FreestyleGameMatch extends GameMatch {
 	private static final int DEFAULT_PLAYER_LIMIT = 50;
 	private static final int DEFAULT_WARMUP = 0;
 	
-	/* Constructors */
+	/* ##### Constructors ##### */
+	/**
+	 * 
+	 * @param mapName	地图名称
+	 * @param ID		比赛id
+	 * @param players	玩家
+	 * @param teams		队伍
+	 */
 	public FreestyleGameMatch(String mapName, String ID, PlayerMap players, PlayerMap[] teams) {
 		super(mapName, ID, players, teams);
 		setupFreestyle();
 	}
+	/**
+	 * 
+	 * @param mapName	地图名称
+	 * @param ID		比赛id
+	 */
 	public FreestyleGameMatch(String mapName, String ID) {
 		super(mapName, ID);
 		setupFreestyle();
@@ -47,8 +59,11 @@ public class FreestyleGameMatch extends GameMatch {
 	/* Updates */
 	@Override
 	public void updateMatch(Iterator<Map.Entry<String,GameMatch>> iter) {
+		// 只要游戏没有结束，就更新游戏和客户端
 		if(!gameFinished(iter)) {
+			// 更新游戏
 			updateGame();
+			// 更新客户端
 			updateClients();
 		}
 	}

@@ -7,7 +7,8 @@ import com.brutalfighters.server.tiled.TiledMap;
 import com.brutalfighters.server.util.Vec2;
 
 /**
- * CTF地图
+ * CTF地图：一个带有重生点和旗帜信息的GameMap
+ * CTFMap在GameMap的基础上增加了重生点和旗帜信息
  *
  */
 public class CTFMap extends GameMap {

@@ -9,6 +9,7 @@ import com.brutalfighters.server.util.Vec2;
 
 /**
  * 游戏地图
+ * 一个带有上校左右边框的TiledMap
  *
  */
 public class GameMap extends TiledMap {
@@ -69,7 +70,7 @@ public class GameMap extends TiledMap {
 	
 	/**
 	 * 检查给定的x值是否在左右边界内
-	 * @param x
+	 * @param x	像素
 	 * @return
 	 */
 	public boolean checkSideBoundaries(float x) {
@@ -77,7 +78,7 @@ public class GameMap extends TiledMap {
 	}
 	/**
 	 * 检查给定的y值是否在上下边界内
-	 * @param y
+	 * @param y	像素
 	 * @return
 	 */
 	public boolean checkVerticalBoundaries(float y) {
@@ -85,7 +86,7 @@ public class GameMap extends TiledMap {
 	}
 	/**
 	 * 检查给定的点是否在上下左右边界内
-	 * @param pos
+	 * @param pos	像素
 	 * @return
 	 */
 	public boolean checkBoundaries(Vec2 pos) {
@@ -153,10 +154,17 @@ public class GameMap extends TiledMap {
 	}
 	
 	// Other map
+	/**
+	 * 整个地图的宽度（像素），多加了一个瓦片的宽度
+	 * @return
+	 */
 	private int getWidthScaledPixels() { // width OF THE WHOLE MAP NOT TILES!!!
 		return width * getTileWidth()+getTileWidth();
 	}
-	
+	/**
+	 * 整个地图的高度（像素），多加了一个瓦片的高度
+	 * @return
+	 */
 	private int getHeightScaledPixels() { // height OF THE WHOLE MAP NOT TILES!!!
 		return height * getTileHeight()+getTileHeight();
 	}

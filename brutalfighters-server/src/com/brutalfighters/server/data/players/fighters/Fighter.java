@@ -357,7 +357,7 @@ abstract public class Fighter {
 	 * 更新
 	 */
 	public final void update() {
-		// 允许extra polation
+		// 允许extrapolation
 		resetExtrapolation();
 		
 		if(!applyDeath()) {
@@ -555,19 +555,29 @@ abstract public class Fighter {
 	 * @return
 	 */
 	protected final boolean applyDeath() {
+		// 玩家没有死亡
 		if(!getPlayer().isDead()) {
+			// 玩家没有hp了
 			if(getPlayer().hasNoHP()) {
-				getPlayer().died();
+				// 说明玩家已经死了
+				getPlayer().died();	// 设置死亡标志位
+				// 玩家正在扛旗
 				if(getPlayer().isHoldingFlag()) {
+					// 设置标志位让玩家把旗扔了
 					getPlayer().droppedFlag();
+					
 					GameMatchManager.getCurrentMatch().getFlags().getFlag(GameMatch.getEnemyTeamID(getPlayer().getTeam())).getFlag().gotDropped();
 				}
 				GameMatchManager.getCurrentMatch().addKill(GameMatch.getEnemyTeamID(getPlayer().getTeam()));
 				getPlayer().setDCD(GameMatchManager.getCurrentMatch().getRespawnTime());
 				return true;
 			}
+			
+			// 若玩家还有hp，则返回false
 			return false;
 		}
+		
+		// 若玩家死亡直接返回ture
 		return true;
 		
 	}

@@ -476,7 +476,10 @@ abstract public class GameMatch {
 		getWarmup().subCounter(GameServer.getDelay());
 	}
 	/**
-	 * 更新游戏
+	 * 更新游戏，需要更新三类对象
+	 * 	1 玩家
+	 * 	2 抛射物
+	 * 	3 旗帜
 	 */
 	protected void updateGame() {
 		// ###1 更新玩家
@@ -487,13 +490,25 @@ abstract public class GameMatch {
 		updateFlags();
 	}
 	
+	/**
+	 * 更新旗帜
+	 */
 	protected void updateFlags() {
+		// 获得旗帜并更新
 		getFlags().updateFlags();
 	}
+	/**
+	 * 更新抛射物
+	 */
 	protected void updateProjectiles() {
+		// 获得抛射物并更新
 		getProjectiles().update();
-	}	
+	}
+	/**
+	 * 更新玩家
+	 */
 	protected void updatePlayers() {
+		// 遍历玩家并更新
 		for(Map.Entry<Connection, Fighter> entry : getPlayers().entrySet()) {
 			entry.getValue().update();
 		}
