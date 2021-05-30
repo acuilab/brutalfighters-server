@@ -196,23 +196,38 @@ abstract public class GameMatch {
 	public void resetTeamWon() {
 		this.teamWon = -1;
 	}
-	
+	/**
+	 * 获得旗帜
+	 * @return
+	 */
 	public Flags getFlags() {
 		return flags;
 	}
+	/**
+	 * 设置旗帜
+	 * @param flags
+	 */
 	public void setFlags(Flags flags) {
 		this.flags = flags;
 	}
 	
+	/**
+	 * 获得比赛ID
+	 * @return
+	 */
 	public String getID() {
 		return getID();
 	}
+	/**
+	 * 切换比赛ID
+	 * @param ID
+	 */
 	public void changeID(String ID) {
 		this.ID = ID;
 	}
 	
 	/**
-	 * 比赛是否已经满了
+	 * 比赛是否已经满了（达到玩家限制数）
 	 * @return
 	 */
 	public boolean isFull() {
@@ -244,13 +259,25 @@ abstract public class GameMatch {
 	public void setScore(Score score) {
 		this.score = score;
 	}
+	/**
+	 * 增加杀人数
+	 * @param team
+	 */
 	public void addKill(int team) {
 		getScore().getKills()[team]++;
 	}
+	/**
+	 * 增加旗帜数
+	 * @param team
+	 */
 	public void addFlag(int team) {
 		getScore().getFlags()[team]++;
 	}
 	
+	/**
+	 * 
+	 * @return
+	 */
 	public int getRespawnTime() {
 		return respawn;
 	}
@@ -513,7 +540,9 @@ abstract public class GameMatch {
 			entry.getValue().update();
 		}
 	}
-	
+	/**
+	 * 更新客户端
+	 */
 	protected void updateClients() {
 		Packet2Players packet = new Packet2Players();
 		

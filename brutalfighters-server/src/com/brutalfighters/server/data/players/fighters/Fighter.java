@@ -72,6 +72,7 @@ abstract public class Fighter {
 	protected Vec2 max_size;
 	
 	// 增益列表
+	// PlayerData里面也有一个BuffData数组，是否重复？
 	protected List<Buff> buffs;
 	
 	// The PlayerData

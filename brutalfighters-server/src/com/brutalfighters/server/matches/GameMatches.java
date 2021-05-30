@@ -83,7 +83,7 @@ public class GameMatches<T extends GameMatch> {
 			T match = gameMatch.getConstructor(String.class, String.class, PlayerMap.class, PlayerMap[].class).newInstance(mapName, ID, players, teams);
 			// 切换id
 			match.changeID(ID);
-			// 增加比赛
+			// 增加比赛（它将玩家和比赛添加到HashMaps中。）
 			addMatch(ID, match);
 			
 			// 返回skid
@@ -122,6 +122,10 @@ public class GameMatches<T extends GameMatch> {
 		return setupMatch(MapManager.getDefaultMap());
 	}
 	
+	/**
+	 * 移除比赛，与addMatch相对应（它将玩家和比赛从HashMaps中移除。）
+	 * @param id
+	 */
 	public void removeMatch(String id) {
 		matches.remove(id);
 		players.values().removeAll(Collections.singleton(id));
@@ -148,6 +152,11 @@ public class GameMatches<T extends GameMatch> {
 		}
 	}
 	
+	/**
+	 * 获得地图名称
+	 * @param id
+	 * @return
+	 */
 	public String getMapName(String id) {
 		return getMatch(id).getMapName();
 	}
@@ -201,7 +210,7 @@ public class GameMatches<T extends GameMatch> {
 		    	return true;
 		    }
 		}
-    	System.out.println("and we are returning false i suppose??"); //$NON-NLS-1$
+    	System.out.println("and we are returning false i suppose??");
 		return false;
 	}
 }
