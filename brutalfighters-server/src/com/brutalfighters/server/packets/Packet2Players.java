@@ -7,6 +7,7 @@ import com.brutalfighters.server.util.Score;
 
 /**
  * 玩家数据包
+ * 几乎包含了客户端需要的所有玩家数据
  */
 public class Packet2Players extends GameMatchPacket {
 	// 客户端玩家数据

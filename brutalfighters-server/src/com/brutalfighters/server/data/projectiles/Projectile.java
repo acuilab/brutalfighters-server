@@ -15,6 +15,9 @@ import com.esotericsoftware.kryonet.Connection;
 
 /**
  * 抛射物抽象类
+ * Projectile/ProjectileData
+ * ProjectileData是否送给客户端的
+ * 
  *
  */
 abstract public class Projectile extends Collidable {
@@ -22,7 +25,7 @@ abstract public class Projectile extends Collidable {
 	protected Fighter fighter;	// 所属战士
 	protected int team;			// 所属队伍
 	
-	protected float dmg;		// 
+	protected float dmg;		// 伤害
 	protected Buff[] buffs;		// 增益效果
 	protected float speed;		// 速度
 	
@@ -116,7 +119,7 @@ abstract public class Projectile extends Collidable {
 	}
 
 	/**
-	 * 初始化
+	 * 初始化（子类通常需要覆写update和initialize方法）
 	 */
 	public void initialize() {
 		if(isColliding()) {
@@ -126,6 +129,10 @@ abstract public class Projectile extends Collidable {
 			getProjectile().getVel().setX(convertSpeed(speed));
 		}
 	}
+	/**
+	 * 更新（子类通常需要覆写update和initialize方法）
+	 * @param iterator
+	 */
 	public void update(Iterator<Projectile> iterator) {
 		getProjectile().addTime(GameServer.getDelay());
 		if(!getProjectile().isExplode()) {

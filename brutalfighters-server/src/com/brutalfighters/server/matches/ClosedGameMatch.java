@@ -7,7 +7,7 @@ import com.brutalfighters.server.base.GameServer;
 import com.brutalfighters.server.data.players.PlayerMap;
 
 /**
- * 已关闭的游戏比赛
+ * 已关闭的游戏比赛（比赛开始、比赛进行和比赛结束处理逻辑）
  * @author chia1
  *
  */

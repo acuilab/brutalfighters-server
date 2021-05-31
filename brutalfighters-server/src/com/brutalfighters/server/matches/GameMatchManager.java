@@ -18,8 +18,8 @@ import com.esotericsoftware.kryonet.Connection;
  *
  */
 public class GameMatchManager {
-	private static GameMatches<ClosedGameMatch> closedMatches;			// 打开的比赛
-	private static GameMatches<OpenGameMatch> openMatches;				// 关闭的比赛
+	private static GameMatches<ClosedGameMatch> closedMatches;			// 关闭的比赛
+	private static GameMatches<OpenGameMatch> openMatches;				// 打开的比赛
 	private static GameMatches<FreestyleGameMatch> freestyleMatches;	// 自由赛
 	private static GameMatch currentMatch;	// 当前比赛
 	private static SecureRandom matchID;	// 比赛id
@@ -63,6 +63,11 @@ public class GameMatchManager {
 		return freestyleMatches.getMatch(cnct).getPlayer(cnct);
 	}
 	
+	/**
+	 * 检查玩家openMatches->closedMatches->freestyleMatches
+	 * @param cnct
+	 * @return
+	 */
 	public static Fighter checkPlayer(Connection cnct) {
 		Fighter p = openMatches.getPlayer(cnct);
 		if(p == null) {
@@ -76,7 +81,7 @@ public class GameMatchManager {
 	
 	// Match Setups
 	public static void removeMatch(String ID) {
-		System.out.println("MATCH REMOVED"); //$NON-NLS-1$
+		System.out.println("MATCH REMOVED");
 		openMatches.removeMatch(ID);
 		closedMatches.removeMatch(ID);
 		System.out.println(closedMatches.getMatchesLength());
@@ -89,8 +94,10 @@ public class GameMatchManager {
 		System.out.println("Got a new player: " + cnct.getID() + " | Playing:" + fighter + " | In Game Mode:" + gamemode.name()); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 		if(FighterFactory.contains(Character.toUpperCase(fighter.charAt(0)) + fighter.substring(1))) {
 			if(gamemode.equals(GameMode.MATCH)) {
+				// 常规模式，将玩家加入openMatches
 				matchPlayer(openMatches, fighter, cnct);
 			} else if(gamemode.equals(GameMode.FREESTYLE)) {
+				// 自由模式，将玩家加入freestyleMatches
 				matchPlayer(freestyleMatches, fighter, cnct);
 			}
 		}

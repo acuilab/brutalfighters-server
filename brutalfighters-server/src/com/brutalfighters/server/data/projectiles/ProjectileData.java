@@ -5,19 +5,20 @@ import com.brutalfighters.server.util.Vec2;
 /**
  * 抛射物数据
  * 	位置、速度、大小、名称、方向、模式、时间
+ * 
  *
  */
 public class ProjectileData {
 	
-	private static final String INIT = "init"; //$NON-NLS-1$
-	private static final String EXPLODE = "explode"; //$NON-NLS-1$
+	private static final String INIT = "init";			// 模式：初始
+	private static final String EXPLODE = "explode";	// 模式：爆炸
 	
-	private Vec2 pos, vel;
-	private Vec2 size;
-	private String name;
-	private String flip;
-	private String mode;
-	private int time;
+	private Vec2 pos, vel;	// 位置和速度
+	private Vec2 size;		// 大小
+	private String name;	// 名称
+	private String flip;	// 朝向
+	private String mode;	// 模式
+	private int time;		// 生存时间
 	
 	public ProjectileData(String name, String flip, Vec2 pos, Vec2 size) {
 		setPos(new Vec2(pos));
@@ -76,19 +77,19 @@ public class ProjectileData {
 		return flip;
 	}
 	public boolean isRight() {
-		return flip.equals("right"); //$NON-NLS-1$
+		return flip.equals("right");
 	}
 	public boolean isLeft() {
-		return flip.equals("left"); //$NON-NLS-1$
+		return flip.equals("left");
 	}
 	public void setFlip(String flip) {
 		this.flip = flip;
 	}
 	public void setRight() {
-		setFlip("right"); //$NON-NLS-1$
+		setFlip("right");
 	}
 	public void setLeft() {
-		setFlip("left"); //$NON-NLS-1$
+		setFlip("left");
 	}
 	
 	public String getMode() {

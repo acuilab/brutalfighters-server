@@ -921,8 +921,9 @@ abstract public class Fighter {
 	}
 	
 	// SPEED CONVERTION
+	// 转换速度：如果玩家朝右，则将速度取反
 	protected final float convertSpeed(float speed) {
-		return getPlayer().getFlip().equals("right") ? speed : -speed;  //$NON-NLS-1$
+		return getPlayer().getFlip().equals("right") ? speed : -speed;
 	}
 	
 	protected void defaultUpdate() {

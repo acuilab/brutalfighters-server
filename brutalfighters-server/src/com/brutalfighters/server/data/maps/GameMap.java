@@ -171,6 +171,7 @@ public class GameMap extends TiledMap {
 	
 	
 	// ##### Collision Detection #####
+	// ##### 碰撞       检测       #####
 	
 	/**
 	 * @param bounds Rectangle is used for the AABB which is currently disabled on tiles.	矩形用于AABB，目前已在图块上禁用。

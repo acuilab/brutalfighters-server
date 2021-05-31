@@ -13,6 +13,7 @@ import com.esotericsoftware.kryonet.Connection;
 
 /**
  * 旗帜（实际上是对旗帜数据的一个简单封装）
+ * 之所以分Flag/FlagData这样的设计，是因为FlagData是要发给客户端的
  *
  */
 public class Flag {

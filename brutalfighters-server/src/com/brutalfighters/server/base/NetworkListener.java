@@ -37,15 +37,17 @@ public class NetworkListener extends Listener {
 	public void received(Connection connection, Object object) {
 		if (object instanceof Packet) {
 
+			// 处理玩家离开
 			if(object instanceof Packet5EscapeMatch) {
-				System.out.println("ESCAPED"); //$NON-NLS-1$
+				System.out.println("ESCAPED");
 				GameMatchManager.escapePlayer(connection);
 				return;
 			}
 			
+			// 处理连接比赛
 			if(object instanceof ConnectGameMatch) {
 				if (object instanceof Packet0ConnectMatch) {
-					System.out.println("HEY! new match player"); //$NON-NLS-1$
+					System.out.println("HEY! new match player");
 					Packet0ConnectMatch packet = ((Packet0ConnectMatch) object);
 					if(GameMode.contains(packet.gamemode)) {
 						GameMatchManager.connectPlayer(GameMode.valueOf(packet.gamemode), ((Packet0ConnectMatch) object).fighter, connection);

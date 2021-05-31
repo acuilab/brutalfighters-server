@@ -3,6 +3,12 @@ package com.brutalfighters.server.data.players;
 import com.brutalfighters.server.data.buffs.BuffData;
 import com.brutalfighters.server.util.Vec2;
 
+/**
+ * 
+ * PlayerData里面包含了BuffData
+ * @author chia2
+ *
+ */
 public class PlayerData {
 	
 	// Basic

@@ -8,7 +8,7 @@ import com.brutalfighters.server.data.objects.Collidable;
  */
 public class Tile extends Collidable {
 	private int id;
-	private String blocked;	// blocked和空
+	private String blocked;	// 是否是障碍物：blocked和空
 	private String step;	// ice(冰)、rock(岩石)、dirt(泥土)
 	private float ratio;	// 1、0.3
 

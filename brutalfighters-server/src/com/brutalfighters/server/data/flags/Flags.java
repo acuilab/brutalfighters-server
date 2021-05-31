@@ -2,6 +2,7 @@ package com.brutalfighters.server.data.flags;
 
 /**
  * 所有旗帜（对旗帜数组的一个封装）
+ * Flags/Flag/FlogData
  *
  */
 public class Flags {

@@ -4,7 +4,7 @@ import java.util.Iterator;
 import java.util.Map;
 
 /**
- * 打开的游戏比赛
+ * 打开的游戏比赛（指的是玩家匹配阶段，用于处理匹配结束而比赛开始的逻辑）
  *
  */
 public class OpenGameMatch extends GameMatch {
@@ -30,10 +30,13 @@ public class OpenGameMatch extends GameMatch {
 		if(isFull() && isOpen()) {
 			// 游戏比赛满了，并且还是打开的状态
 			System.out.println("Yay! an open match is ready to be closed! :-)");
-			// 关闭
+			// 将比赛设置为关闭状态
 			close();
-			// 开始比赛
-			GameMatchManager.closedMatches().getMatch(GameMatchManager.closedMatches().setupMatch(getMapName(), getPlayers(), teams)).startMatch();
+			// 设置并开始比赛
+			GameMatchManager.closedMatches().getMatch(
+					GameMatchManager.closedMatches().setupMatch(getMapName(), getPlayers(), teams)
+			).startMatch();
+			
 			iter.remove();
 		}
 	}

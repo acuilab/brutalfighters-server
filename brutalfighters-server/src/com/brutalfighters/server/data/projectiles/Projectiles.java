@@ -5,7 +5,8 @@ import java.util.Iterator;
 
 /**
  * 抛射物列表
- *
+ * 保存了一个Projectile集合，再update方法中对集合中的Projectile进行遍历，并将迭代器iterator作为参数传到update方法中，在update方法中可以对Projectile进行删除
+ *	Projectiles/Projectile/ProjectileData
  */
 public class Projectiles {
 	private ArrayList<Projectile> projectiles;

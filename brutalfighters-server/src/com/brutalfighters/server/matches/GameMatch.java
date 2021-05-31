@@ -542,6 +542,7 @@ abstract public class GameMatch {
 	}
 	/**
 	 * 更新客户端
+	 * 对比赛中的每个玩家，发送Packet2Players数据包
 	 */
 	protected void updateClients() {
 		Packet2Players packet = new Packet2Players();
@@ -558,13 +559,15 @@ abstract public class GameMatch {
 	}
 	
 	public void womboCombo(Connection connection) {
+		// 遍历比赛中的玩家
 		for(Map.Entry<Connection, Fighter> entry : getPlayers().entrySet()) {
 			
 			Fighter fighter = entry.getValue();
 			PlayerData pd = fighter.getPlayer();
 			
 			switch(pd.getName()) {
-				case "Blaze": //$NON-NLS-1$
+				// 火焰
+				case "Blaze":
 					pd.setLeft(false);
 					pd.setRunning( false);
 					pd.setAAttack(true);
@@ -572,29 +575,29 @@ abstract public class GameMatch {
 					pd.setSkill3(true);
 					fighter.startSkill3();
 				break;
-				
-				case "Dusk": //$NON-NLS-1$
+				// 黄昏
+				case "Dusk":
 					pd.setAAttack(true);
 					pd.enableSkilling();
 					pd.setSkill1(true);
 					fighter.startSkill1();
 				break;
-				
-				case "Chip": //$NON-NLS-1$
+				// 芯片
+				case "Chip":
 					pd.setAAttack(true);
 					pd.enableSkilling();
 					pd.setSkill2(true);
 					fighter.startSkill2();
 				break;
-				
-				case "Surge": //$NON-NLS-1$
+				// 波涛
+				case "Surge":
 					pd.setAAttack(true);
 					pd.enableSkilling();
 					pd.setSkill4(true);
 					fighter.startSkill4();
 				break;
-				
-				case "Lust": //$NON-NLS-1$
+				// 欲望
+				case "Lust":
 					pd.setAAttack(true);
 					pd.enableSkilling();
 					pd.setSkill1(true);
